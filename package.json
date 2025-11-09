@@ -7,8 +7,8 @@
 		"dev": "bun run --watch src/server.ts",
 		"build": "bun build ./src/server.ts --outdir ./dist --target bun --minify",
 		"start": "bun run dist/server.js",
-		"check": "bunx biome ci",
-		"lint": "bunx biome check --write"
+		"lint": "bunx biome check --write",
+		"check": "bunx biome ci"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.4",
