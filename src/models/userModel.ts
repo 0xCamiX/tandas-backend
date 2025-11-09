@@ -203,42 +203,53 @@ export class UserModel {
 	 * @returns {Promise<UserProgressResponse[]>} Array con el progreso del usuario en cada curso
 	 */
 	async getUserProgress(userId: string) {
-		const enrollments = await prisma.enrollment.findMany({
-			where: { userId },
-			include: {
-				course: {
-					include: {
-						modules: {
-							orderBy: {
-								order: "asc",
+		// Fetch enrollments and all module completions in parallel
+		const [enrollments, moduleCompletions] = await Promise.all([
+			prisma.enrollment.findMany({
+				where: { userId },
+				include: {
+					course: {
+						include: {
+							modules: {
+								orderBy: {
+									order: "asc",
+								},
 							},
 						},
 					},
 				},
-			},
-		});
-
-		const progressPromises = enrollments.map(async (enrollment) => {
-			const completedModules = await prisma.moduleCompletion.count({
-				where: {
-					userId,
+			}),
+			prisma.moduleCompletion.findMany({
+				where: { userId },
+				include: {
 					module: {
-						courseId: enrollment.courseId,
+						select: {
+							courseId: true,
+						},
 					},
 				},
-			});
+			}),
+		]);
 
-			return {
-				courseId: enrollment.courseId,
-				courseTitle: enrollment.course.title,
-				progress: enrollment.progress,
-				completedModules,
-				totalModules: enrollment.course.modules.length,
-				completedAt: enrollment.completedAt,
-			};
-		});
+		// Group completion counts by courseId in a single pass
+		const completionCountsByCourse = moduleCompletions.reduce(
+			(acc, completion) => {
+				const courseId = completion.module.courseId;
+				acc[courseId] = (acc[courseId] || 0) + 1;
+				return acc;
+			},
+			{} as Record<string, number>
+		);
 
-		return Promise.all(progressPromises);
+		// Map enrollments to progress response using the pre-computed counts
+		return enrollments.map((enrollment) => ({
+			courseId: enrollment.courseId,
+			courseTitle: enrollment.course.title,
+			progress: enrollment.progress,
+			completedModules: completionCountsByCourse[enrollment.courseId] || 0,
+			totalModules: enrollment.course.modules.length,
+			completedAt: enrollment.completedAt,
+		}));
 	}
 
 	/**

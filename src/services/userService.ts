@@ -159,11 +159,6 @@ export class UserService {
 	 * @throws {Error} Si el usuario no existe (código: "USER_NOT_FOUND")
 	 */
 	async getUserEnrollments(userId: string): Promise<Enrollment[]> {
-		const user = await this.userModel.findById(userId);
-		if (!user) {
-			throw new Error("USER_NOT_FOUND");
-		}
-
 		const userWithRelations =
 			await this.userModel.findByIdWithRelations(userId);
 		if (!userWithRelations) {
