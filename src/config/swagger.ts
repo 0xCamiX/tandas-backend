@@ -394,6 +394,200 @@ const swaggerDefinition: SwaggerDefinition = {
 					},
 				},
 			},
+			Module: {
+				type: "object",
+				properties: {
+					id: {
+						type: "string",
+						format: "uuid",
+						example: "123e4567-e89b-12d3-a456-426614174000",
+					},
+					courseId: {
+						type: "string",
+						format: "uuid",
+						example: "123e4567-e89b-12d3-a456-426614174000",
+					},
+					title: {
+						type: "string",
+						example: "Introducción a la sedimentación",
+					},
+					content: {
+						type: "string",
+						nullable: true,
+						example: "Contenido educativo del módulo",
+					},
+					videoUrl: {
+						type: "string",
+						format: "uri",
+						nullable: true,
+						example: "https://example.com/video.mp4",
+					},
+					order: {
+						type: "integer",
+						example: 1,
+					},
+					duration: {
+						type: "integer",
+						nullable: true,
+						example: 30,
+						description: "Duración en minutos",
+					},
+					createdAt: {
+						type: "string",
+						format: "date-time",
+					},
+					updatedAt: {
+						type: "string",
+						format: "date-time",
+					},
+				},
+			},
+			ModuleWithRelations: {
+				allOf: [
+					{
+						$ref: "#/components/schemas/Module",
+					},
+					{
+						type: "object",
+						properties: {
+							course: {
+								type: "object",
+								properties: {
+									id: {
+										type: "string",
+										format: "uuid",
+									},
+									title: {
+										type: "string",
+										example: "Sedimentación",
+									},
+								},
+							},
+							quizzes: {
+								type: "array",
+								items: {
+									type: "object",
+									properties: {
+										id: {
+											type: "string",
+											format: "uuid",
+										},
+										question: {
+											type: "string",
+											example: "¿Qué es la sedimentación?",
+										},
+									},
+								},
+							},
+							resources: {
+								type: "array",
+								items: {
+									type: "object",
+									properties: {
+										id: {
+											type: "string",
+											format: "uuid",
+										},
+										resourceType: {
+											type: "string",
+											enum: ["PDF", "DOC", "PPT", "VIDEO", "LINK", "OTHER"],
+										},
+										url: {
+											type: "string",
+											format: "uri",
+										},
+										title: {
+											type: "string",
+											nullable: true,
+										},
+									},
+								},
+							},
+						},
+					},
+				],
+			},
+			CreateModule: {
+				type: "object",
+				required: ["courseId", "title"],
+				properties: {
+					courseId: {
+						type: "string",
+						format: "uuid",
+						example: "123e4567-e89b-12d3-a456-426614174000",
+						description: "ID del curso al que pertenece el módulo",
+					},
+					title: {
+						type: "string",
+						minLength: 1,
+						maxLength: 200,
+						example: "Introducción a la sedimentación",
+						description: "Título del módulo",
+					},
+					content: {
+						type: "string",
+						maxLength: 10000,
+						example: "Contenido educativo del módulo",
+						description: "Contenido de texto del módulo",
+					},
+					videoUrl: {
+						type: "string",
+						format: "uri",
+						maxLength: 500,
+						example: "https://example.com/video.mp4",
+						description: "URL del video del módulo",
+					},
+					order: {
+						type: "integer",
+						minimum: 0,
+						example: 1,
+						description: "Orden del módulo en el curso",
+					},
+					duration: {
+						type: "integer",
+						minimum: 0,
+						example: 30,
+						description: "Duración del módulo en minutos",
+					},
+				},
+			},
+			UpdateModule: {
+				type: "object",
+				properties: {
+					title: {
+						type: "string",
+						minLength: 1,
+						maxLength: 200,
+						example: "Introducción avanzada a la sedimentación",
+						description: "Título del módulo",
+					},
+					content: {
+						type: "string",
+						maxLength: 10000,
+						example: "Contenido educativo actualizado del módulo",
+						description: "Contenido de texto del módulo",
+					},
+					videoUrl: {
+						type: "string",
+						format: "uri",
+						maxLength: 500,
+						example: "https://example.com/video.mp4",
+						description: "URL del video del módulo",
+					},
+					order: {
+						type: "integer",
+						minimum: 0,
+						example: 2,
+						description: "Orden del módulo en el curso",
+					},
+					duration: {
+						type: "integer",
+						minimum: 0,
+						example: 45,
+						description: "Duración del módulo en minutos",
+					},
+				},
+			},
 		},
 	},
 	security: [
