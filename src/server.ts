@@ -10,9 +10,7 @@ async function startServer() {
 				resolve();
 			});
 
-			server.on("error", (error) => {
-				reject(error);
-			});
+			server.on("error", reject);
 		});
 	} catch (error) {
 		console.error("Failed to start server:", error);
