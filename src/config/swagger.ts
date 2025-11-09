@@ -885,6 +885,67 @@ const swaggerDefinition: SwaggerDefinition = {
 					},
 				},
 			},
+			ModuleCompletion: {
+				type: "object",
+				properties: {
+					id: {
+						type: "string",
+						format: "uuid",
+						example: "123e4567-e89b-12d3-a456-426614174000",
+					},
+					userId: {
+						type: "string",
+						format: "uuid",
+						example: "123e4567-e89b-12d3-a456-426614174000",
+					},
+					moduleId: {
+						type: "string",
+						format: "uuid",
+						example: "123e4567-e89b-12d3-a456-426614174000",
+					},
+					completedAt: {
+						type: "string",
+						format: "date-time",
+					},
+					createdAt: {
+						type: "string",
+						format: "date-time",
+					},
+					updatedAt: {
+						type: "string",
+						format: "date-time",
+					},
+				},
+			},
+			ModuleCompletionWithDetails: {
+				allOf: [
+					{
+						$ref: "#/components/schemas/ModuleCompletion",
+					},
+					{
+						type: "object",
+						properties: {
+							module: {
+								type: "object",
+								properties: {
+									id: {
+										type: "string",
+										format: "uuid",
+									},
+									title: {
+										type: "string",
+										example: "Introducción a la sedimentación",
+									},
+									courseId: {
+										type: "string",
+										format: "uuid",
+									},
+								},
+							},
+						},
+					},
+				],
+			},
 		},
 	},
 	security: [
