@@ -588,6 +588,78 @@ const swaggerDefinition: SwaggerDefinition = {
 					},
 				},
 			},
+			Enrollment: {
+				type: "object",
+				properties: {
+					id: {
+						type: "string",
+						format: "uuid",
+						example: "123e4567-e89b-12d3-a456-426614174000",
+					},
+					userId: {
+						type: "string",
+						format: "uuid",
+						example: "123e4567-e89b-12d3-a456-426614174000",
+					},
+					courseId: {
+						type: "string",
+						format: "uuid",
+						example: "123e4567-e89b-12d3-a456-426614174000",
+					},
+					enrolledAt: {
+						type: "string",
+						format: "date-time",
+					},
+					progress: {
+						type: "number",
+						format: "float",
+						minimum: 0,
+						maximum: 1,
+						example: 0.5,
+						description: "Progreso del curso (0.0 a 1.0)",
+					},
+					completedAt: {
+						type: "string",
+						format: "date-time",
+						nullable: true,
+					},
+					createdAt: {
+						type: "string",
+						format: "date-time",
+					},
+					updatedAt: {
+						type: "string",
+						format: "date-time",
+					},
+				},
+			},
+			EnrollmentWithRelations: {
+				allOf: [
+					{
+						$ref: "#/components/schemas/Enrollment",
+					},
+					{
+						type: "object",
+						properties: {
+							course: {
+								$ref: "#/components/schemas/Course",
+							},
+						},
+					},
+				],
+			},
+			CreateEnrollment: {
+				type: "object",
+				required: ["courseId"],
+				properties: {
+					courseId: {
+						type: "string",
+						format: "uuid",
+						example: "123e4567-e89b-12d3-a456-426614174000",
+						description: "ID del curso al que se desea inscribir",
+					},
+				},
+			},
 		},
 	},
 	security: [
