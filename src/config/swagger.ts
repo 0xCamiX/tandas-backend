@@ -660,6 +660,231 @@ const swaggerDefinition: SwaggerDefinition = {
 					},
 				},
 			},
+			Quiz: {
+				type: "object",
+				properties: {
+					id: {
+						type: "string",
+						format: "uuid",
+						example: "123e4567-e89b-12d3-a456-426614174000",
+					},
+					moduleId: {
+						type: "string",
+						format: "uuid",
+						example: "123e4567-e89b-12d3-a456-426614174000",
+					},
+					question: {
+						type: "string",
+						example: "¿Qué es la sedimentación?",
+					},
+					type: {
+						type: "string",
+						enum: ["MULTIPLE_CHOICE"],
+						example: "MULTIPLE_CHOICE",
+					},
+					explanation: {
+						type: "string",
+						nullable: true,
+						example:
+							"La sedimentación es el proceso de separación de partículas sólidas del agua",
+					},
+					createdAt: {
+						type: "string",
+						format: "date-time",
+					},
+					updatedAt: {
+						type: "string",
+						format: "date-time",
+					},
+				},
+			},
+			QuizWithOptions: {
+				allOf: [
+					{
+						$ref: "#/components/schemas/Quiz",
+					},
+					{
+						type: "object",
+						properties: {
+							options: {
+								type: "array",
+								items: {
+									type: "object",
+									properties: {
+										id: {
+											type: "string",
+											format: "uuid",
+										},
+										optionText: {
+											type: "string",
+											example: "Proceso de separación de partículas",
+										},
+										isCorrect: {
+											type: "boolean",
+											example: true,
+										},
+										order: {
+											type: "integer",
+											example: 1,
+										},
+									},
+								},
+							},
+						},
+					},
+				],
+			},
+			CreateQuiz: {
+				type: "object",
+				required: ["moduleId", "question", "options"],
+				properties: {
+					moduleId: {
+						type: "string",
+						format: "uuid",
+						example: "123e4567-e89b-12d3-a456-426614174000",
+						description: "ID del módulo al que pertenece el quiz",
+					},
+					question: {
+						type: "string",
+						minLength: 1,
+						maxLength: 1000,
+						example: "¿Qué es la sedimentación?",
+						description: "Pregunta del quiz",
+					},
+					type: {
+						type: "string",
+						enum: ["MULTIPLE_CHOICE"],
+						example: "MULTIPLE_CHOICE",
+						description: "Tipo de quiz",
+					},
+					explanation: {
+						type: "string",
+						maxLength: 2000,
+						example:
+							"La sedimentación es el proceso de separación de partículas sólidas del agua",
+						description: "Explicación de la respuesta correcta",
+					},
+					options: {
+						type: "array",
+						minItems: 2,
+						maxItems: 10,
+						items: {
+							type: "object",
+							required: ["optionText", "isCorrect"],
+							properties: {
+								optionText: {
+									type: "string",
+									minLength: 1,
+									maxLength: 500,
+									example: "Proceso de separación de partículas",
+								},
+								isCorrect: {
+									type: "boolean",
+									example: true,
+								},
+								order: {
+									type: "integer",
+									minimum: 0,
+									example: 1,
+								},
+							},
+						},
+						description: "Opciones de respuesta del quiz",
+					},
+				},
+			},
+			UpdateQuiz: {
+				type: "object",
+				properties: {
+					question: {
+						type: "string",
+						minLength: 1,
+						maxLength: 1000,
+						example: "¿Qué es la sedimentación avanzada?",
+						description: "Pregunta del quiz",
+					},
+					type: {
+						type: "string",
+						enum: ["MULTIPLE_CHOICE"],
+						example: "MULTIPLE_CHOICE",
+						description: "Tipo de quiz",
+					},
+					explanation: {
+						type: "string",
+						maxLength: 2000,
+						example: "La sedimentación avanzada es un proceso más complejo",
+						description: "Explicación de la respuesta correcta",
+					},
+				},
+			},
+			QuizAttempt: {
+				type: "object",
+				properties: {
+					id: {
+						type: "string",
+						format: "uuid",
+						example: "123e4567-e89b-12d3-a456-426614174000",
+					},
+					userId: {
+						type: "string",
+						format: "uuid",
+						example: "123e4567-e89b-12d3-a456-426614174000",
+					},
+					quizId: {
+						type: "string",
+						format: "uuid",
+						example: "123e4567-e89b-12d3-a456-426614174000",
+					},
+					score: {
+						type: "number",
+						format: "float",
+						minimum: 0,
+						maximum: 1,
+						example: 1.0,
+						description: "Calificación del intento (0.0 a 1.0)",
+					},
+					isCorrect: {
+						type: "boolean",
+						example: true,
+						description: "Indica si el intento fue correcto",
+					},
+					attemptedAt: {
+						type: "string",
+						format: "date-time",
+					},
+					createdAt: {
+						type: "string",
+						format: "date-time",
+					},
+					updatedAt: {
+						type: "string",
+						format: "date-time",
+					},
+				},
+			},
+			CreateQuizAttempt: {
+				type: "object",
+				required: ["responses"],
+				properties: {
+					responses: {
+						type: "array",
+						minItems: 1,
+						items: {
+							type: "object",
+							required: ["quizOptionId"],
+							properties: {
+								quizOptionId: {
+									type: "string",
+									format: "uuid",
+									example: "123e4567-e89b-12d3-a456-426614174000",
+									description: "ID de la opción seleccionada",
+								},
+							},
+						},
+						description: "Array de respuestas seleccionadas",
+					},
+				},
+			},
 		},
 	},
 	security: [
