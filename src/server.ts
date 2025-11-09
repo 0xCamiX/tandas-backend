@@ -4,8 +4,15 @@ const PORT = process.env.PORT || 3000;
 
 async function startServer() {
 	try {
-		app.listen(PORT, () => {
-			console.log(`Server running on port http://localhost:${PORT}`);
+		await new Promise<void>((resolve, reject) => {
+			const server = app.listen(PORT, () => {
+				console.log(`Server running on port http://localhost:${PORT}`);
+				resolve();
+			});
+
+			server.on("error", (error) => {
+				reject(error);
+			});
 		});
 	} catch (error) {
 		console.error("Failed to start server:", error);
