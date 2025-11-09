@@ -11,6 +11,7 @@
 			"**/*.ts",
 			"**/*.tsx",
 			"!!**/node_modules",
+			"!!**/generated",
 			"!!**/dist",
 			"!!**/build",
 			"!!*.tsbuildinfo"
