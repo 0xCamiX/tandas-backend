@@ -9,11 +9,13 @@
 		"ignoreUnknown": false,
 		"includes": [
 			"**/*.ts",
-			"**/*.tsx",
-			"!!**/node_modules",
-			"!!**/dist",
-			"!!**/build",
-			"!!*.tsbuildinfo"
+			"**/*.tsx"
+		],
+		"ignore": [
+			"**/node_modules",
+			"**/dist",
+			"**/build",
+			"*.tsbuildinfo"
 		]
 	},
 	"formatter": {
