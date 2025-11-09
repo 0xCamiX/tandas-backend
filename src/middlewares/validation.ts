@@ -1,37 +1,22 @@
 import type { NextFunction, Request, Response } from "express";
-import * as v from "valibot";
+import type { BaseIssue, BaseSchema } from "valibot";
+import { parse, ValiError } from "valibot";
 
 /**
  * Middleware genérico para validar el body de la petición
  */
 export function validateBody<
-	T extends v.BaseSchema<unknown, unknown, v.BaseIssue<unknown>>,
+	T extends BaseSchema<unknown, unknown, BaseIssue<unknown>>,
 >(schema: T) {
 	return (req: Request, res: Response, next: NextFunction) => {
 		try {
-			const validated = v.parse(schema, req.body);
-			req.body = validated;
+			req.body = parse(schema, req.body);
 			next();
 		} catch (error) {
-			if (error instanceof v.ValiError) {
-				const errors = v.flatten(error.issues);
-				return res.status(400).json({
-					success: false,
-					error: {
-						code: "VALIDATION_ERROR",
-						message: "Error de validación",
-						details: errors,
-					},
-				});
+			if (error instanceof ValiError) {
+				return res.status(400).json({ errors: error.issues });
 			}
-
-			return res.status(400).json({
-				success: false,
-				error: {
-					code: "VALIDATION_ERROR",
-					message: "Error de validación",
-				},
-			});
+			next(error);
 		}
 	};
 }
@@ -40,33 +25,18 @@ export function validateBody<
  * Middleware genérico para validar los parámetros de la petición
  */
 export function validateParams<
-	T extends v.BaseSchema<unknown, unknown, v.BaseIssue<unknown>>,
+	T extends BaseSchema<unknown, unknown, BaseIssue<unknown>>,
 >(schema: T) {
 	return (req: Request, res: Response, next: NextFunction) => {
 		try {
-			const validated = v.parse(schema, req.params);
-			req.params = validated as Request["params"];
+			// Validar sin asignar (req.params es readonly)
+			parse(schema, req.params);
 			next();
 		} catch (error) {
-			if (error instanceof v.ValiError) {
-				const errors = v.flatten(error.issues);
-				return res.status(400).json({
-					success: false,
-					error: {
-						code: "VALIDATION_ERROR",
-						message: "Error de validación en parámetros",
-						details: errors,
-					},
-				});
+			if (error instanceof ValiError) {
+				return res.status(400).json({ errors: error.issues });
 			}
-
-			return res.status(400).json({
-				success: false,
-				error: {
-					code: "VALIDATION_ERROR",
-					message: "Error de validación en parámetros",
-				},
-			});
+			next(error);
 		}
 	};
 }
@@ -75,33 +45,18 @@ export function validateParams<
  * Middleware genérico para validar query parameters
  */
 export function validateQuery<
-	T extends v.BaseSchema<unknown, unknown, v.BaseIssue<unknown>>,
+	T extends BaseSchema<unknown, unknown, BaseIssue<unknown>>,
 >(schema: T) {
 	return (req: Request, res: Response, next: NextFunction) => {
 		try {
-			const validated = v.parse(schema, req.query);
-			req.query = validated as Request["query"];
+			// Validar sin asignar (req.query es readonly)
+			parse(schema, req.query);
 			next();
 		} catch (error) {
-			if (error instanceof v.ValiError) {
-				const errors = v.flatten(error.issues);
-				return res.status(400).json({
-					success: false,
-					error: {
-						code: "VALIDATION_ERROR",
-						message: "Error de validación en query parameters",
-						details: errors,
-					},
-				});
+			if (error instanceof ValiError) {
+				return res.status(400).json({ errors: error.issues });
 			}
-
-			return res.status(400).json({
-				success: false,
-				error: {
-					code: "VALIDATION_ERROR",
-					message: "Error de validación en query parameters",
-				},
-			});
+			next(error);
 		}
 	};
 }

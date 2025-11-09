@@ -9,7 +9,7 @@ import apiRoutes from "./routes";
 const app: Express = express();
 
 app.use(express.json());
-app.use(morgan("combined"));
+app.use(morgan("dev"));
 
 app.all("/api/auth/*splat", toNodeHandler(auth));
 

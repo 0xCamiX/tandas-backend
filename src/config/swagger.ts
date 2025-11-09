@@ -220,6 +220,180 @@ const swaggerDefinition: SwaggerDefinition = {
 					},
 				},
 			},
+			Course: {
+				type: "object",
+				properties: {
+					id: {
+						type: "string",
+						format: "uuid",
+						example: "123e4567-e89b-12d3-a456-426614174000",
+					},
+					title: {
+						type: "string",
+						example: "Sedimentación",
+					},
+					description: {
+						type: "string",
+						nullable: true,
+						example: "Aprende técnicas de sedimentación de agua",
+					},
+					imageUrl: {
+						type: "string",
+						format: "uri",
+						nullable: true,
+						example: "https://example.com/course-image.jpg",
+					},
+					category: {
+						type: "string",
+						example: "sedimentación",
+					},
+					level: {
+						type: "string",
+						enum: ["BEGINNER", "INTERMEDIATE", "ADVANCED"],
+						example: "BEGINNER",
+					},
+					status: {
+						type: "string",
+						enum: ["ACTIVE", "INACTIVE"],
+						example: "ACTIVE",
+					},
+					createdAt: {
+						type: "string",
+						format: "date-time",
+					},
+					updatedAt: {
+						type: "string",
+						format: "date-time",
+					},
+				},
+			},
+			CourseWithModules: {
+				allOf: [
+					{
+						$ref: "#/components/schemas/Course",
+					},
+					{
+						type: "object",
+						properties: {
+							modules: {
+								type: "array",
+								items: {
+									type: "object",
+									properties: {
+										id: {
+											type: "string",
+											format: "uuid",
+										},
+										title: {
+											type: "string",
+											example: "Introducción a la sedimentación",
+										},
+										order: {
+											type: "integer",
+											example: 1,
+										},
+										duration: {
+											type: "integer",
+											nullable: true,
+											example: 30,
+											description: "Duración en minutos",
+										},
+									},
+								},
+							},
+						},
+					},
+				],
+			},
+			CreateCourse: {
+				type: "object",
+				required: ["title", "category", "level"],
+				properties: {
+					title: {
+						type: "string",
+						minLength: 1,
+						maxLength: 200,
+						example: "Sedimentación",
+						description: "Título del curso",
+					},
+					description: {
+						type: "string",
+						maxLength: 2000,
+						example: "Aprende técnicas de sedimentación de agua",
+						description: "Descripción del curso",
+					},
+					imageUrl: {
+						type: "string",
+						format: "uri",
+						maxLength: 500,
+						example: "https://example.com/course-image.jpg",
+						description: "URL de la imagen del curso",
+					},
+					category: {
+						type: "string",
+						minLength: 1,
+						maxLength: 100,
+						example: "sedimentación",
+						description: "Categoría del curso",
+					},
+					level: {
+						type: "string",
+						enum: ["BEGINNER", "INTERMEDIATE", "ADVANCED"],
+						example: "BEGINNER",
+						description: "Nivel del curso",
+					},
+					status: {
+						type: "string",
+						enum: ["ACTIVE", "INACTIVE"],
+						example: "ACTIVE",
+						description: "Estado del curso",
+					},
+				},
+			},
+			UpdateCourse: {
+				type: "object",
+				properties: {
+					title: {
+						type: "string",
+						minLength: 1,
+						maxLength: 200,
+						example: "Sedimentación Avanzada",
+						description: "Título del curso",
+					},
+					description: {
+						type: "string",
+						maxLength: 2000,
+						example: "Aprende técnicas avanzadas de sedimentación de agua",
+						description: "Descripción del curso",
+					},
+					imageUrl: {
+						type: "string",
+						format: "uri",
+						maxLength: 500,
+						example: "https://example.com/course-image.jpg",
+						description: "URL de la imagen del curso",
+					},
+					category: {
+						type: "string",
+						minLength: 1,
+						maxLength: 100,
+						example: "sedimentación",
+						description: "Categoría del curso",
+					},
+					level: {
+						type: "string",
+						enum: ["BEGINNER", "INTERMEDIATE", "ADVANCED"],
+						example: "INTERMEDIATE",
+						description: "Nivel del curso",
+					},
+					status: {
+						type: "string",
+						enum: ["ACTIVE", "INACTIVE"],
+						example: "ACTIVE",
+						description: "Estado del curso",
+					},
+				},
+			},
 		},
 	},
 	security: [
