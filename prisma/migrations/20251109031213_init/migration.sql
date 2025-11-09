@@ -1,9 +1,12 @@
 -- CreateTable
 CREATE TABLE "User" (
-    "id" SERIAL NOT NULL,
+    "id" UUID NOT NULL DEFAULT gen_random_uuid(),
     "email" TEXT NOT NULL,
     "name" TEXT,
-
+    "emailVerified" TIMESTAMP,
+    "image" TEXT,
+    "createdAt" TIMESTAMP NOT NULL DEFAULT now(),
+    "updatedAt" TIMESTAMP NOT NULL DEFAULT now(),
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
 
