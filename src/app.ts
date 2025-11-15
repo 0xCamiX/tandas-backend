@@ -1,4 +1,5 @@
 import { toNodeHandler } from "better-auth/node";
+import cors from "cors";
 import express, { type Express } from "express";
 import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
@@ -10,7 +11,11 @@ const app: Express = express();
 
 app.use(express.json());
 app.use(morgan("combined"));
-
+app.use(
+	cors({
+		origin: process.env.NEXT_PUBLIC_URL,
+	})
+);
 app.all("/api/auth/*splat", toNodeHandler(auth));
 
 app.use("/api/v1", apiRoutes);
