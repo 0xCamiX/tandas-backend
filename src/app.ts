@@ -14,6 +14,8 @@ app.use(morgan("combined"));
 app.use(
 	cors({
 		origin: process.env.NEXT_PUBLIC_URL,
+		credentials: true,
+		exposedHeaders: ["set-auth-token"],
 	})
 );
 app.all("/api/auth/*splat", toNodeHandler(auth));
