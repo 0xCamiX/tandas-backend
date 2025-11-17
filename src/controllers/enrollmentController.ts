@@ -292,8 +292,10 @@ export class EnrollmentController {
 				return;
 			}
 
-			const enrolled =
-				await this.enrollmentService.isUserEnrolledInCourse(userId, courseId);
+			const enrolled = await this.enrollmentService.isUserEnrolledInCourse(
+				userId,
+				courseId
+			);
 
 			res.status(200).json({
 				success: true,
