@@ -36,4 +36,3 @@ export async function cleanupExpiredSessionsJob(): Promise<void> {
 		console.error("[Cleanup Sessions] Error en el job:", error);
 	}
 }
-

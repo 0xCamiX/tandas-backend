@@ -8,10 +8,9 @@ async function startServer() {
 		await new Promise<void>((resolve, reject) => {
 			const server = app.listen(PORT, () => {
 				console.log(`Server running on port http://localhost:${PORT}`);
-				
-				// Iniciar jobs programados
+
 				startScheduledJobs();
-				
+
 				resolve();
 			});
 

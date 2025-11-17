@@ -32,7 +32,7 @@ app.use(
 );
 
 app.get("/", (_req, res) => {
-	res.send("Hello World");
+	res.send("TANDAS API");
 });
 
 export default app;

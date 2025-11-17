@@ -3,7 +3,7 @@ import { cleanupExpiredSessionsJob } from "./cleanupSessions";
 
 /**
  * Configuración de los jobs programados
- * 
+ *
  * Formato cron: "minuto hora día mes día-semana"
  * Ejemplo: "0 2 * * *" = Todos los días a las 2:00 AM
  */
@@ -21,4 +21,3 @@ export function startScheduledJobs(): void {
 	);
 	console.log("[Scheduler] Los jobs programados están activos");
 }
-
