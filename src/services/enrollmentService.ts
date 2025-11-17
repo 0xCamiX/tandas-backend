@@ -91,7 +91,7 @@ export class EnrollmentService {
 			throw new Error("ALREADY_ENROLLED");
 		}
 
-		// Verificar si el curso existe (esto debería hacerse en el servicio de cursos)
+		// TODO: Verificar si el curso existe (esto debería hacerse en el servicio de cursos)
 		// Por ahora, si falla la creación por foreign key, se lanzará un error de base de datos
 
 		return this.enrollmentModel.create({
@@ -137,5 +137,19 @@ export class EnrollmentService {
 		courseId: string
 	): Promise<EnrollmentResponse | null> {
 		return this.enrollmentModel.findByUserAndCourse(userId, courseId);
+	}
+
+	/**
+	 * Verifica si un usuario está inscrito en un curso específico.
+	 *
+	 * @param {string} userId - Identificador único del usuario (UUID)
+	 * @param {string} courseId - Identificador único del curso (UUID)
+	 * @returns {Promise<boolean>} true si está inscrito, false en caso contrario
+	 */
+	async isUserEnrolledInCourse(
+		userId: string,
+		courseId: string
+	): Promise<boolean> {
+		return this.enrollmentModel.isUserEnrolled(userId, courseId);
 	}
 }

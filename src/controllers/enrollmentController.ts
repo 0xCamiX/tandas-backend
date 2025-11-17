@@ -268,4 +268,60 @@ export class EnrollmentController {
 			});
 		}
 	}
+
+	/**
+	 * Maneja la petición GET /api/enrollments/courses/:courseId para verificar si un usuario está inscrito en un curso.
+	 *
+	 * @param {Request} req - Objeto de petición de Express (req.params.courseId contiene el ID del curso)
+	 * @param {Response} res - Objeto de respuesta de Express
+	 * @returns {Promise<void>} No retorna valor, envía respuesta HTTP
+	 */
+	async isUserEnrolledInCourse(req: Request, res: Response): Promise<void> {
+		try {
+			const userId = this.getCurrentUserId(req);
+			const { courseId } = req.params;
+
+			if (!courseId) {
+				res.status(400).json({
+					success: false,
+					error: {
+						code: "INVALID_COURSE_ID",
+						message: "ID de curso requerido",
+					},
+				});
+				return;
+			}
+
+			const enrolled = await this.enrollmentService.isUserEnrolledInCourse(
+				userId,
+				courseId
+			);
+
+			res.status(200).json({
+				success: true,
+				data: {
+					enrolled,
+				},
+			});
+		} catch (error) {
+			if (error instanceof Error && error.message === "UNAUTHORIZED") {
+				res.status(401).json({
+					success: false,
+					error: {
+						code: "UNAUTHORIZED",
+						message: "No autenticado",
+					},
+				});
+				return;
+			}
+
+			res.status(500).json({
+				success: false,
+				error: {
+					code: "INTERNAL_ERROR",
+					message: "Error interno del servidor",
+				},
+			});
+		}
+	}
 }
