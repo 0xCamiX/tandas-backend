@@ -108,6 +108,64 @@ router.get("/me", (req, res) => controller.getMyEnrollments(req, res));
 /**
  * @swagger
  * /api/v1/enrollments/courses/{courseId}:
+ *   get:
+ *     summary: Verifica si el usuario actual está inscrito en un curso
+ *     tags: [Enrollments]
+ *     security:
+ *       - bearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: courseId
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *         description: ID del curso
+ *     responses:
+ *       200:
+ *         description: Resultado de la verificación
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     enrolled:
+ *                       type: boolean
+ *                       example: true
+ *       400:
+ *         description: ID de curso inválido
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       401:
+ *         description: No autenticado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       500:
+ *         description: Error interno del servidor
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ */
+router.get(
+	"/courses/:courseId",
+	validateParams(enrollmentCourseIdParamSchema),
+	(req, res) => controller.isUserEnrolledInCourse(req, res)
+);
+
+/**
+ * @swagger
+ * /api/v1/enrollments/courses/{courseId}:
  *   post:
  *     summary: Inscribirse a un curso (requiere autenticación)
  *     tags: [Enrollments]
