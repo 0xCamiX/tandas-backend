@@ -81,7 +81,7 @@ model Course {
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @default(now()) @updatedAt
 
-  modules    Module[]
+  modules     Module[]
   enrollments Enrollment[]
 
   @@index([status])
@@ -96,24 +96,24 @@ enum CourseStatus {
 }
 
 enum CourseLevel {
-  BEGINNER
-  INTERMEDIATE
-  ADVANCED
+  INICIAL
+  MEDIO
+  AVANZADO
 }
 
 model Module {
-  id          String       @id @default(uuid())
-  courseId    String
-  title       String
-  content     String?
-  videoUrl    String?
-  order       Int    @default(0)
-  duration    Int?    @default(0)
+  id       String  @id @default(uuid())
+  courseId String
+  title    String
+  content  String?
+  videoUrl String?
+  order    Int     @default(0)
+  duration Int?    @default(0)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 
-  course      Course          @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  course      Course             @relation(fields: [courseId], references: [id], onDelete: Cascade)
   quizzes     Quiz[]
   resources   Resource[]
   completions ModuleCompletion[]
@@ -124,17 +124,17 @@ model Module {
 }
 
 model Quiz {
-  id          String       @id @default(uuid())
+  id          String   @id @default(uuid())
   moduleId    String
   question    String
   type        QuizType @default(MULTIPLE_CHOICE)
   explanation String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
 
   module Module @relation(fields: [moduleId], references: [id], onDelete: Cascade)
 
-  options QuizOption[]
+  options  QuizOption[]
   attempts QuizAttempt[]
 
   @@index([moduleId])
@@ -148,10 +148,10 @@ model QuizOption {
   isCorrect  Boolean  @default(false)
   order      Int      @default(0)
   createdAt  DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  updatedAt  DateTime @default(now()) @updatedAt
 
   // Relations
-  quiz      Quiz          @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  quiz      Quiz           @relation(fields: [quizId], references: [id], onDelete: Cascade)
   responses QuizResponse[]
 
   @@index([quizId])
@@ -163,14 +163,14 @@ enum QuizType {
 }
 
 model Resource {
-  id          String       @id @default(uuid())
-  moduleId    String
+  id           String       @id @default(uuid())
+  moduleId     String
   resourceType ResourceType
-  url         String
-  title       String?
-  description String?
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @default(now()) @updatedAt
+  url          String
+  title        String?
+  description  String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @default(now()) @updatedAt
 
   module Module @relation(fields: [moduleId], references: [id], onDelete: Cascade)
 
@@ -188,14 +188,14 @@ enum ResourceType {
 }
 
 model Enrollment {
-  id        String   @id @default(uuid())
-  userId    String
-  courseId  String
-  enrolledAt DateTime @default(now())
-  progress  Float    @default(0) // 0.0 to 1.0
+  id          String    @id @default(uuid())
+  userId      String
+  courseId    String
+  enrolledAt  DateTime  @default(now())
+  progress    Float     @default(0) // 0.0 to 1.0
   completedAt DateTime?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now()) @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now()) @updatedAt
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
@@ -207,12 +207,12 @@ model Enrollment {
 }
 
 model ModuleCompletion {
-  id         String   @id @default(uuid())
-  userId     String
-  moduleId   String
+  id          String   @id @default(uuid())
+  userId      String
+  moduleId    String
   completedAt DateTime @default(now())
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @default(now()) @updatedAt
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
 
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
   module Module @relation(fields: [moduleId], references: [id], onDelete: Cascade)
@@ -224,17 +224,17 @@ model ModuleCompletion {
 }
 
 model QuizAttempt {
-  id         String   @id @default(uuid())
-  userId     String
-  quizId     String
-  score      Float    // 0.0 to 1.0
-  isCorrect  Boolean
+  id          String   @id @default(uuid())
+  userId      String
+  quizId      String
+  score       Float // 0.0 to 1.0
+  isCorrect   Boolean
   attemptedAt DateTime @default(now())
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @default(now()) @updatedAt
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
 
-  user     User          @relation(fields: [userId], references: [id], onDelete: Cascade)
-  quiz     Quiz          @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quiz      Quiz           @relation(fields: [quizId], references: [id], onDelete: Cascade)
   responses QuizResponse[]
 
   @@index([userId])
@@ -244,10 +244,10 @@ model QuizAttempt {
 }
 
 model QuizResponse {
-  id            String   @id @default(uuid())
-  attemptId     String
-  quizOptionId  String
-  createdAt     DateTime @default(now())
+  id           String   @id @default(uuid())
+  attemptId    String
+  quizOptionId String
+  createdAt    DateTime @default(now())
 
   attempt    QuizAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
   quizOption QuizOption  @relation(fields: [quizOptionId], references: [id], onDelete: Cascade)

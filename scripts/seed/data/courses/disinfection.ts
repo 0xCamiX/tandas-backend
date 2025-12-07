@@ -4,9 +4,9 @@ export const disinfectionCourse: SeedCourse = {
 	title: "Desinfección del agua en el hogar",
 	description:
 		"Conoce y aplica métodos de desinfección como el hervido, la cloración y la desinfección solar (SODIS) para inactivar microorganismos y hacer el agua más segura para beber.",
-	imageUrl: "/images/courses/desinfeccion-agua.jpg",
+	imageUrl: "/images/courses/desinfeccion-agua.png",
 	category: "DESINFECCIÓN",
-	level: "BEGINNER",
+	level: "INICIAL",
 	status: "ACTIVE",
 	modules: [
 		{
