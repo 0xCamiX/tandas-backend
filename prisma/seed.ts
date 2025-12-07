@@ -1,6 +1,7 @@
 import "dotenv/config";
 import { PrismaClient } from "../src/generated/prisma/client";
 import { disinfectionCourse } from "./seeding/courses/disinfection";
+import { safeStorageCourse } from "./seeding/courses/safeStorage";
 import type { SeedCourse, SeedModule } from "./seeding/types";
 
 const prisma = new PrismaClient({
@@ -215,15 +216,21 @@ async function seedCourse(courseSeed: SeedCourse) {
 async function main() {
 	console.info("Starting database seed...");
 
-	try {
-		// Sembrar curso de desinfección
-		await seedCourse(disinfectionCourse);
+	const courseSeedData = [disinfectionCourse, safeStorageCourse];
 
-		console.info("✓ Database seed completed successfully");
-	} catch (error) {
-		console.error("✗ Seed failed:", error);
-		throw error;
+	for (const course of courseSeedData) {
+		try {
+			await seedCourse(course);
+		} catch (error) {
+			console.error(
+				`Failed to seed course "${course.title}":`,
+				error instanceof Error ? error.message : error
+			);
+			console.error("Stack trace:", error instanceof Error ? error.stack : "N/A");
+		}
 	}
+
+	console.info("✓ Database seed completed successfully");
 }
 
 main()
