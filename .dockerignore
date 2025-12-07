@@ -1,0 +1,98 @@
+# Dependencies
+node_modules
+
+# Build outputs (generated in container)
+dist
+build
+*.tsbuildinfo
+
+# Prisma generated files (generated in container)
+src/generated
+**/generated
+
+# Docker files
+Dockerfile*
+docker-compose*
+.dockerignore
+build.sh
+
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+LICENSE
+docs/
+*.md
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE and editor files
+.vscode
+.idea
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+coverage
+coverage.*
+.nyc_output
+*.test.ts
+*.test.js
+*.spec.ts
+*.spec.js
+**/__tests__/**
+**/__mocks__/**
+test/
+tests/
+
+# CI/CD
+.github
+.gitlab-ci.yml
+.travis.yml
+.circleci
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Cache directories
+.cache
+.parcel-cache
+.npm
+.yarn
+.bun
+.turbo
+
+# Deployment scripts (not needed in container)
+scripts/
+helm-charts/
+Makefile
+
+# Development tools
+.editorconfig
+.prettierrc*
+.eslintrc*
+biome.json
+
+# Temporary files
+*.tmp
+*.temp
+.tmp
+.temp
+
+# OS files
+Thumbs.db
+.DS_Store
