@@ -132,8 +132,10 @@ export class UserModel {
 
 		const averageQuizScore =
 			quizScores.length > 0
-				? quizScores.reduce((sum: number, attempt: { score: number }) => sum + attempt.score, 0) /
-					quizScores.length
+				? quizScores.reduce(
+						(sum: number, attempt: { score: number }) => sum + attempt.score,
+						0
+					) / quizScores.length
 				: 0;
 
 		return {
@@ -233,7 +235,10 @@ export class UserModel {
 
 		// Group completion counts by courseId in a single pass
 		const completionCountsByCourse = moduleCompletions.reduce(
-			(acc: Record<string, number>, completion: { module: { courseId: string } }) => {
+			(
+				acc: Record<string, number>,
+				completion: { module: { courseId: string } }
+			) => {
 				const courseId = completion.module.courseId;
 				acc[courseId] = (acc[courseId] || 0) + 1;
 				return acc;
@@ -242,14 +247,21 @@ export class UserModel {
 		);
 
 		// Map enrollments to progress response using the pre-computed counts
-		return enrollments.map((enrollment: { courseId: string, course: { title: string, modules: { length: number } }, progress: number, completedAt: Date | null }) => ({
-			courseId: enrollment.courseId,
-			courseTitle: enrollment.course.title,
-			progress: enrollment.progress,
-			completedModules: completionCountsByCourse[enrollment.courseId] || 0,
-			totalModules: enrollment.course.modules.length,
-			completedAt: enrollment.completedAt,
-		}));
+		return enrollments.map(
+			(enrollment: {
+				courseId: string;
+				course: { title: string; modules: { length: number } };
+				progress: number;
+				completedAt: Date | null;
+			}) => ({
+				courseId: enrollment.courseId,
+				courseTitle: enrollment.course.title,
+				progress: enrollment.progress,
+				completedModules: completionCountsByCourse[enrollment.courseId] || 0,
+				totalModules: enrollment.course.modules.length,
+				completedAt: enrollment.completedAt,
+			})
+		);
 	}
 
 	/**
