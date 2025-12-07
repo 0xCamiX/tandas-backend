@@ -140,7 +140,7 @@ async function seedCourse(courseSeed: SeedCourse, dryRun: boolean) {
 							imageUrl: courseSeed.imageUrl,
 							category: courseSeed.category,
 							level: courseSeed.level,
-							status: courseSeed.status ?? "ACTIVE",
+							status: courseSeed.status ?? "ACTIVO",
 						},
 					})
 				: await tx.course.create({
@@ -150,7 +150,7 @@ async function seedCourse(courseSeed: SeedCourse, dryRun: boolean) {
 							imageUrl: courseSeed.imageUrl,
 							category: courseSeed.category,
 							level: courseSeed.level,
-							status: courseSeed.status ?? "ACTIVE",
+							status: courseSeed.status ?? "ACTIVO",
 						},
 					});
 

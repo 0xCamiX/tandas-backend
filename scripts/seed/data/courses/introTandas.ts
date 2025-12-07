@@ -6,8 +6,8 @@ export const introTandasCourse: SeedCourse = {
 		"Curso básico para comprender por qué es necesario tratar el agua en casa, qué es el enfoque TANDAS y cómo el tratamiento domiciliario protege la salud de las familias.",
 	imageUrl: "/images/courses/intro-tandas.jpg",
 	category: "INTRODUCCIÓN",
-	level: "BEGINNER",
-	status: "ACTIVE",
+	level: "INICIAL",
+	status: "ACTIVO",
 	modules: [
 		{
 			title: "¿Por qué tratar el agua en casa?",

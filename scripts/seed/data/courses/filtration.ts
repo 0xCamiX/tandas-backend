@@ -6,8 +6,8 @@ export const filtrationCourse: SeedCourse = {
 		"Aprende a usar distintos métodos de filtración —desde paños y filtros de bioarena hasta filtros cerámicos— para reducir la turbidez y parte de los microorganismos del agua en casa.",
 	imageUrl: "/images/courses/filtracion-agua.jpg",
 	category: "FILTRACIÓN",
-	level: "BEGINNER",
-	status: "ACTIVE",
+	level: "INICIAL",
+	status: "ACTIVO",
 	modules: [
 		{
 			title: "¿Qué es la filtración y qué puede lograr?",

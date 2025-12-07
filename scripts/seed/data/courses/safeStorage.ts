@@ -6,8 +6,8 @@ export const safeStorageCourse: SeedCourse = {
 		"Aprende a almacenar y manejar el agua tratada en recipientes adecuados para evitar la recontaminación y mantenerla segura para el consumo.",
 	imageUrl: "/images/courses/almacenamiento-seguro.jpg",
 	category: "ALMACENAMIENTO SEGURO",
-	level: "BEGINNER",
-	status: "ACTIVE",
+	level: "INICIAL",
+	status: "ACTIVO",
 	modules: [
 		{
 			title: "Riesgo de recontaminación y principios de almacenamiento seguro",

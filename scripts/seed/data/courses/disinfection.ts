@@ -7,7 +7,7 @@ export const disinfectionCourse: SeedCourse = {
 	imageUrl: "/images/courses/desinfeccion-agua.png",
 	category: "DESINFECCIÓN",
 	level: "INICIAL",
-	status: "ACTIVE",
+	status: "ACTIVO",
 	modules: [
 		{
 			title: "Fundamentos de la desinfección del agua",

@@ -6,8 +6,8 @@ export const sedimentationCourse: SeedCourse = {
 		"Aprende a reducir la turbidez del agua mediante sedimentación simple y mejorada (coagulación-floculación), como primer paso de pretratamiento antes de la desinfección.",
 	imageUrl: "/images/courses/sedimentacion-agua.jpg",
 	category: "SEDIMENTACIÓN",
-	level: "BEGINNER",
-	status: "ACTIVE",
+	level: "INICIAL",
+	status: "ACTIVO",
 	modules: [
 		{
 			title: "¿Qué es la sedimentación y por qué es importante?",
