@@ -15,9 +15,10 @@ const swaggerDefinition: SwaggerDefinition = {
 	servers: [
 		{
 			url: process.env.BETTER_AUTH_URL || "http://localhost:3000",
-			description: process.env.NODE_ENV === "production" 
-				? "Servidor de producción" 
-				: "Servidor de desarrollo",
+			description:
+				process.env.NODE_ENV === "production"
+					? "Servidor de producción"
+					: "Servidor de desarrollo",
 		},
 	],
 	components: {
