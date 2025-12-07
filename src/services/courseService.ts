@@ -70,7 +70,7 @@ export class CourseService {
 			imageUrl: data.imageUrl,
 			category: data.category,
 			level: data.level,
-			status: data.status || CourseStatus.INACTIVE,
+			status: data.status || CourseStatus.INACTIVO,
 		});
 	}
 

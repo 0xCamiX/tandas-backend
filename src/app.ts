@@ -35,4 +35,13 @@ app.get("/", (_req, res) => {
 	res.send("TANDAS API");
 });
 
+// Health check endpoint for Docker/AWS
+app.get("/health", (_req, res) => {
+	res.status(200).json({
+		status: "healthy",
+		timestamp: new Date().toISOString(),
+		uptime: process.uptime(),
+	});
+});
+
 export default app;

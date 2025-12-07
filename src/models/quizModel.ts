@@ -1,5 +1,5 @@
 import { prisma } from "../db/prisma";
-import type { Prisma, Quiz } from "../generated/prisma/client";
+import type { Prisma, Quiz, QuizOption } from "../generated/prisma/client";
 import type {
 	QuizFilters,
 	QuizResponse,
@@ -91,7 +91,7 @@ export class QuizModel {
 
 		return {
 			...this.mapToResponse(quiz),
-			options: quiz.options.map((option) => ({
+			options: quiz.options.map((option: QuizOption) => ({
 				id: option.id,
 				optionText: option.optionText,
 				isCorrect: option.isCorrect,
@@ -120,7 +120,7 @@ export class QuizModel {
 
 		return {
 			...this.mapToResponse(quiz),
-			options: quiz.options.map((option) => ({
+			options: quiz.options.map((option: QuizOption) => ({
 				id: option.id,
 				optionText: option.optionText,
 				isCorrect: option.isCorrect,

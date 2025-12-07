@@ -143,3 +143,8 @@ dist
 
 # End of https://www.toptal.com/developers/gitignore/api/node
 /src/generated/prisma
+
+# Vercel
+.vercel
+vercel.json
+.env*.local

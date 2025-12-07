@@ -32,12 +32,12 @@ export const createCourseSchema = v.object({
 		v.trim()
 	),
 	level: v.picklist(
-		[CourseLevel.BEGINNER, CourseLevel.INTERMEDIATE, CourseLevel.ADVANCED],
+		[CourseLevel.INICIAL, CourseLevel.MEDIO, CourseLevel.AVANZADO],
 		"El nivel debe ser BEGINNER, INTERMEDIATE o ADVANCED"
 	),
 	status: v.optional(
 		v.picklist(
-			[CourseStatus.ACTIVE, CourseStatus.INACTIVE],
+			[CourseStatus.ACTIVO, CourseStatus.INACTIVO],
 			"El estado debe ser ACTIVE o INACTIVE"
 		)
 	),
@@ -79,13 +79,13 @@ export const updateCourseSchema = v.object({
 	),
 	level: v.optional(
 		v.picklist(
-			[CourseLevel.BEGINNER, CourseLevel.INTERMEDIATE, CourseLevel.ADVANCED],
+			[CourseLevel.INICIAL, CourseLevel.MEDIO, CourseLevel.AVANZADO],
 			"El nivel debe ser BEGINNER, INTERMEDIATE o ADVANCED"
 		)
 	),
 	status: v.optional(
 		v.picklist(
-			[CourseStatus.ACTIVE, CourseStatus.INACTIVE],
+			[CourseStatus.ACTIVO, CourseStatus.INACTIVO],
 			"El estado debe ser ACTIVE o INACTIVE"
 		)
 	),
@@ -119,7 +119,7 @@ export const courseIdParamSchemaAlt = v.object({
 export const courseFiltersSchema = v.object({
 	status: v.optional(
 		v.picklist(
-			[CourseStatus.ACTIVE, CourseStatus.INACTIVE],
+			[CourseStatus.ACTIVO, CourseStatus.INACTIVO],
 			"El estado debe ser ACTIVE o INACTIVE"
 		)
 	),
@@ -132,7 +132,7 @@ export const courseFiltersSchema = v.object({
 	),
 	level: v.optional(
 		v.picklist(
-			[CourseLevel.BEGINNER, CourseLevel.INTERMEDIATE, CourseLevel.ADVANCED],
+			[CourseLevel.INICIAL, CourseLevel.MEDIO, CourseLevel.AVANZADO],
 			"El nivel debe ser BEGINNER, INTERMEDIATE o ADVANCED"
 		)
 	),
