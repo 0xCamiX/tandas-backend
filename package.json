@@ -8,8 +8,8 @@
 	},
 	"scripts": {
 		"dev": "bun run --watch src/server.ts",
-		"build": "bunx prisma generate && bun build ./src/server.ts --outdir ./dist --target bun --minify",
-		"start": "bun run dist/server.js",
+		"build": "bunx prisma generate && rm -rf dist && cp -r src dist && find dist -name '*.ts' -type f -delete",
+		"start": "bun run dist/server.ts",
 		"lint": "bunx biome check --write",
 		"check": "bunx biome ci",
 		"db:seed": "bun run prisma/seed.ts"

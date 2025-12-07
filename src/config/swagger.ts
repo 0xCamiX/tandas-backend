@@ -14,8 +14,10 @@ const swaggerDefinition: SwaggerDefinition = {
 	},
 	servers: [
 		{
-			url: "http://localhost:3000",
-			description: "Servidor de desarrollo",
+			url: process.env.BETTER_AUTH_URL || "http://localhost:3000",
+			description: process.env.NODE_ENV === "production" 
+				? "Servidor de producción" 
+				: "Servidor de desarrollo",
 		},
 	],
 	components: {
@@ -957,7 +959,7 @@ const swaggerDefinition: SwaggerDefinition = {
 
 const options = {
 	definition: swaggerDefinition,
-	apis: ["./src/routes/**/*.ts", "./dist/routes/**/*.js"],
+	apis: ["./src/routes/**/*.ts"],
 };
 
 export const swaggerSpec = swaggerJsdoc(options);
