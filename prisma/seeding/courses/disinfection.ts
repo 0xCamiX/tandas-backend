@@ -1,4 +1,4 @@
-import type { SeedCourse } from "../../types";
+import type { SeedCourse } from "../types";
 
 export const disinfectionCourse: SeedCourse = {
 	title: "Desinfección del agua en el hogar",
@@ -10,7 +10,7 @@ export const disinfectionCourse: SeedCourse = {
 	status: "ACTIVO",
 	modules: [
 		{
-			title: "Hervido del agua: método completo",
+			title: "Hervido del agua",
 			order: 1,
 			duration: 40,
 			content: `En este módulo aprenderás a desinfectar el agua mediante el hervido, un método tradicional, sencillo y altamente efectivo.
@@ -50,7 +50,7 @@ Limitaciones:
 - Si no se almacena correctamente, el agua puede recontaminarse.
 
 Al finalizar, podrás hervir el agua de manera segura siguiendo los pasos correctos, evitar la recontaminación durante el enfriamiento y almacenamiento, y mantener el agua segura para el consumo de tu familia.`,
-			videoUrl: "https://www.youtube.com/watch?v=ejemplo-hervido-agua",
+			videoUrl: "https://www.youtube.com/watch?v=kik7YAeBcsU",
 			resources: [
 				{
 					type: "PDF",
@@ -148,7 +148,7 @@ Al finalizar, podrás hervir el agua de manera segura siguiendo los pasos correc
 			],
 		},
 		{
-			title: "Cloración domiciliaria: método completo",
+			title: "Cloración domiciliaria",
 			order: 2,
 			duration: 45,
 			content: `En este módulo aprenderás a desinfectar el agua usando cloro, un método ampliamente usado en todo el mundo por su eficacia y bajo costo.
@@ -286,7 +286,7 @@ Al finalizar, podrás calcular y aplicar dosis sencillas de cloro para desinfect
 			],
 		},
 		{
-			title: "Desinfección solar (SODIS): método completo",
+			title: "Desinfección solar (SODIS)",
 			order: 3,
 			duration: 50,
 			content: `En este módulo aprenderás a desinfectar el agua usando la energía del sol mediante el método SODIS (Desinfección Solar), una técnica de bajo costo y fácil aplicación ideal para zonas de clima soleado.
@@ -454,3 +454,4 @@ Al finalizar, podrás implementar el método SODIS correctamente en tu hogar, sa
 		},
 	],
 };
+

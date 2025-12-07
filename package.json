@@ -3,6 +3,9 @@
 	"module": "index.ts",
 	"type": "module",
 	"private": true,
+	"prisma": {
+		"seed": "bun run prisma/seed.ts"
+	},
 	"scripts": {
 		"dev": "bun run --watch src/server.ts",
 		"build": "bun build ./src/server.ts --outdir ./dist --target bun --minify",
@@ -13,9 +16,9 @@
 		"test:watch": "bun --env-file=.env.test test --watch",
 		"test:db:setup": "bun --env-file=.env.test x prisma migrate deploy",
 		"test:db:reset": "bun --env-file=.env.test x prisma migrate reset --force",
-		"db:seed": "bun run scripts/seed/index.ts",
+		"db:seed": "bun run prisma/seed.ts",
 		"db:clean": "bun run scripts/db/cleanup.ts",
-		"db:reseed": "bun run scripts/db/cleanup.ts --educational && bun run scripts/seed/index.ts"
+		"db:reseed": "bun run scripts/db/cleanup.ts --educational && bun run prisma/seed.ts"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.4",
