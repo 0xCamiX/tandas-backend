@@ -3,25 +3,30 @@
 	"module": "index.ts",
 	"type": "module",
 	"private": true,
+	"prisma": {
+		"seed": "bun run prisma/seed.ts"
+	},
 	"scripts": {
 		"dev": "bun run --watch src/server.ts",
 		"build": "bun build ./src/server.ts --outdir ./dist --target bun --minify",
 		"start": "bun run dist/server.js",
 		"lint": "bunx biome check --write",
-		"check": "bunx biome ci"
+		"check": "bunx biome ci",
+		"db:seed": "bun run prisma/seed.ts"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.4",
 		"@types/bun": "latest",
 		"@types/cors": "^2.8.19",
 		"@types/node-cron": "^3.0.11",
-		"prisma": "^6.19.0"
+		"prisma": "^7.1.0"
 	},
 	"peerDependencies": {
 		"typescript": "^5"
 	},
 	"dependencies": {
-		"@prisma/client": "^6.19.0",
+		"@prisma/adapter-pg": "^7.1.0",
+		"@prisma/client": "^7.1.0",
 		"@prisma/extension-accelerate": "^2.0.2",
 		"@types/express": "^5.0.5",
 		"@types/morgan": "^1.9.10",
