@@ -1,0 +1,21 @@
+services:
+  server:
+    image: tandas-rest-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+      secrets:
+        - DATABASE_URL
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+secrets:
+  DATABASE_URL:
+    environment: DATABASE_URL
