@@ -12,13 +12,7 @@
 		"start": "bun run dist/server.js",
 		"lint": "bunx biome check --write",
 		"check": "bunx biome ci",
-		"test": "bun --env-file=.env.test test",
-		"test:watch": "bun --env-file=.env.test test --watch",
-		"test:db:setup": "bun --env-file=.env.test x prisma migrate deploy",
-		"test:db:reset": "bun --env-file=.env.test x prisma migrate reset --force",
-		"db:seed": "bun run prisma/seed.ts",
-		"db:clean": "bun run scripts/db/cleanup.ts",
-		"db:reseed": "bun run scripts/db/cleanup.ts --educational && bun run prisma/seed.ts"
+		"db:seed": "bun run prisma/seed.ts"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.3.4",
