@@ -43,4 +43,3 @@ export interface SeedCourse {
 	status?: CourseStatus;
 	modules: SeedModule[];
 }
-

@@ -110,7 +110,8 @@ async function seedModule(courseId: string, moduleSeed: SeedModule) {
 	}
 
 	// Soporte para múltiples quizzes o un solo quiz (compatibilidad)
-	const quizzesToCreate = moduleSeed.quizzes || (moduleSeed.quiz ? [moduleSeed.quiz] : []);
+	const quizzesToCreate =
+		moduleSeed.quizzes || (moduleSeed.quiz ? [moduleSeed.quiz] : []);
 
 	for (const quizSeed of quizzesToCreate) {
 		if (!quizSeed || !quizSeed.options || !Array.isArray(quizSeed.options)) {
@@ -226,7 +227,10 @@ async function main() {
 				`Failed to seed course "${course.title}":`,
 				error instanceof Error ? error.message : error
 			);
-			console.error("Stack trace:", error instanceof Error ? error.stack : "N/A");
+			console.error(
+				"Stack trace:",
+				error instanceof Error ? error.stack : "N/A"
+			);
 		}
 	}
 

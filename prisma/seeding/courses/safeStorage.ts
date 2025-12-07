@@ -58,8 +58,7 @@ Al finalizar el módulo podrás explicar qué es la recontaminación, por qué e
 			],
 			quizzes: [
 				{
-					question:
-						"¿Qué es la recontaminación del agua tratada?",
+					question: "¿Qué es la recontaminación del agua tratada?",
 					explanation:
 						"La recontaminación ocurre cuando el agua que ya fue tratada se vuelve a contaminar por un manejo inseguro, contacto con recipientes sucios o utensilios contaminados.",
 					options: [
@@ -187,7 +186,8 @@ Al finalizar, serás capaz de evaluar si un recipiente es adecuado para almacena
 				{
 					type: "PDF",
 					url: "resources/almacenamiento/recipientes/guia-recipientes-seguros.pdf",
-					title: "Guía práctica: Elección de recipientes seguros para agua tratada",
+					title:
+						"Guía práctica: Elección de recipientes seguros para agua tratada",
 					description:
 						"Documento completo con características, materiales y buenas prácticas para seleccionar recipientes adecuados.",
 				},
@@ -331,7 +331,8 @@ Al finalizar el módulo, podrás diseñar rutinas sencillas de manejo higiénico
 				{
 					type: "PDF",
 					url: "resources/almacenamiento/manejo-higienico/guia-manejo-organizacion.pdf",
-					title: "Guía completa: Manejo higiénico y organización familiar/comunitaria",
+					title:
+						"Guía completa: Manejo higiénico y organización familiar/comunitaria",
 					description:
 						"Documento con prácticas de manejo higiénico, rutinas familiares y estrategias de organización comunitaria.",
 				},
@@ -425,4 +426,3 @@ Al finalizar el módulo, podrás diseñar rutinas sencillas de manejo higiénico
 		},
 	],
 };
-

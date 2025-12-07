@@ -454,4 +454,3 @@ Al finalizar, podrás implementar el método SODIS correctamente en tu hogar, sa
 		},
 	],
 };
-
