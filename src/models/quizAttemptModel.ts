@@ -101,10 +101,12 @@ export class QuizAttemptModel {
 			return null;
 		}
 
+		type ResponseWithOption = (typeof attempt.responses)[number];
+
 		return {
 			...this.mapToResponse(attempt),
 			quiz: attempt.quiz,
-			responses: attempt.responses.map((response) => ({
+			responses: attempt.responses.map((response: ResponseWithOption) => ({
 				id: response.id,
 				quizOptionId: response.quizOptionId,
 				quizOption: response.quizOption,
