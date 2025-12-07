@@ -31,6 +31,7 @@ export interface SeedModule {
 	duration?: number;
 	resources?: SeedResource[];
 	quiz?: SeedQuiz;
+	quizzes?: SeedQuiz[];
 }
 
 export interface SeedCourse {
