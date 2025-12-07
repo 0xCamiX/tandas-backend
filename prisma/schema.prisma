@@ -1,0 +1,257 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  name          String?
+  emailVerified Boolean   @default(false)
+  image         String?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @default(now()) @updatedAt
+  accounts      Account[]
+  sessions      Session[]
+
+  enrollments       Enrollment[]
+  moduleCompletions ModuleCompletion[]
+  quizAttempts      QuizAttempt[]
+
+  @@map("user")
+}
+
+model Session {
+  id        String   @id
+  expiresAt DateTime
+  token     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  ipAddress String?
+  userAgent String?
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("session")
+}
+
+model Account {
+  id                    String    @id
+  accountId             String
+  providerId            String
+  userId                String
+  accessToken           String?
+  refreshToken          String?
+  idToken               String?
+  accessTokenExpiresAt  DateTime?
+  refreshTokenExpiresAt DateTime?
+  scope                 String?
+  password              String?
+  createdAt             DateTime  @default(now())
+  updatedAt             DateTime  @updatedAt
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("account")
+}
+
+model Verification {
+  id         String   @id
+  identifier String
+  value      String
+  expiresAt  DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt
+
+  @@map("verification")
+}
+
+model Course {
+  id          String       @id @default(uuid())
+  title       String
+  description String?
+  imageUrl    String?
+  category    String
+  level       CourseLevel
+  status      CourseStatus @default(INACTIVO)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @default(now()) @updatedAt
+
+  modules     Module[]
+  enrollments Enrollment[]
+
+  @@index([status])
+  @@index([category])
+  @@index([level])
+  @@map("courses")
+}
+
+enum CourseStatus {
+  ACTIVO
+  INACTIVO
+}
+
+enum CourseLevel {
+  INICIAL
+  MEDIO
+  AVANZADO
+}
+
+model Module {
+  id       String  @id @default(uuid())
+  courseId String
+  title    String
+  content  String?
+  videoUrl String?
+  order    Int     @default(0)
+  duration Int?    @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+
+  course      Course             @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  quizzes     Quiz[]
+  resources   Resource[]
+  completions ModuleCompletion[]
+
+  @@index([courseId])
+  @@index([courseId, order])
+  @@map("modules")
+}
+
+model Quiz {
+  id          String   @id @default(uuid())
+  moduleId    String
+  question    String
+  type        QuizType @default(MULTIPLE_CHOICE)
+  explanation String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+
+  module Module @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+
+  options  QuizOption[]
+  attempts QuizAttempt[]
+
+  @@index([moduleId])
+  @@map("quizzes")
+}
+
+model QuizOption {
+  id         String   @id @default(uuid())
+  quizId     String
+  optionText String
+  isCorrect  Boolean  @default(false)
+  order      Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now()) @updatedAt
+
+  // Relations
+  quiz      Quiz           @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  responses QuizResponse[]
+
+  @@index([quizId])
+  @@map("quiz_options")
+}
+
+enum QuizType {
+  MULTIPLE_CHOICE
+}
+
+model Resource {
+  id           String       @id @default(uuid())
+  moduleId     String
+  resourceType ResourceType
+  url          String
+  title        String?
+  description  String?
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @default(now()) @updatedAt
+
+  module Module @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+
+  @@index([moduleId])
+  @@map("resources")
+}
+
+enum ResourceType {
+  PDF
+  DOC
+  PPT
+  VIDEO
+  LINK
+  OTHER
+}
+
+model Enrollment {
+  id          String    @id @default(uuid())
+  userId      String
+  courseId    String
+  enrolledAt  DateTime  @default(now())
+  progress    Float     @default(0) // 0.0 to 1.0
+  completedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now()) @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course Course @relation(fields: [courseId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, courseId])
+  @@index([userId])
+  @@index([courseId])
+  @@map("enrollments")
+}
+
+model ModuleCompletion {
+  id          String   @id @default(uuid())
+  userId      String
+  moduleId    String
+  completedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  module Module @relation(fields: [moduleId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, moduleId])
+  @@index([userId])
+  @@index([moduleId])
+  @@map("module_completions")
+}
+
+model QuizAttempt {
+  id          String   @id @default(uuid())
+  userId      String
+  quizId      String
+  score       Float // 0.0 to 1.0
+  isCorrect   Boolean
+  attemptedAt DateTime @default(now())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now()) @updatedAt
+
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  quiz      Quiz           @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  responses QuizResponse[]
+
+  @@index([userId])
+  @@index([quizId])
+  @@index([userId, quizId])
+  @@map("quiz_attempts")
+}
+
+model QuizResponse {
+  id           String   @id @default(uuid())
+  attemptId    String
+  quizOptionId String
+  createdAt    DateTime @default(now())
+
+  attempt    QuizAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  quizOption QuizOption  @relation(fields: [quizOptionId], references: [id], onDelete: Cascade)
+
+  @@index([attemptId])
+  @@index([quizOptionId])
+  @@map("quiz_responses")
+}
