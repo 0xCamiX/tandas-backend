@@ -9,7 +9,7 @@
 	"scripts": {
 		"dev": "bun run --watch src/server.ts",
 		"start": "bun run dist/server.js",
-		"build": "npx prisma generate && vercel build",
+		"build": "bunx prisma generate && vercel build",
 		"lint": "bunx biome check --write",
 		"check": "bunx biome ci",
 		"db:seed": "bun run prisma/seed.ts"
