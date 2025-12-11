@@ -146,4 +146,5 @@ dist
 
 # Vercel
 .vercel
+vercel.json
 .env*.local
