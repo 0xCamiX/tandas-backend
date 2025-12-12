@@ -1,8 +1,9 @@
 name: Build and Publish image to Docker Hub
 on:
   push:
-    branches:
-      - develop
+    branches: [main]
+  pull_request:
+    branches: [develop]
 
 jobs:
   publish_images:
