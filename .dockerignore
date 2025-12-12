@@ -1,98 +1,76 @@
-# Dependencies
-node_modules
-
-# Build outputs (generated in container)
-dist
-build
-*.tsbuildinfo
-
-# Prisma generated files (generated in container)
-src/generated
-**/generated
-
-# Docker files
-Dockerfile*
-docker-compose*
-.dockerignore
-build.sh
-
-# Git
-.git
-.gitignore
-.gitattributes
-
-# Documentation
-README.md
-LICENSE
-docs/
-*.md
+# Node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+bun.lockb
 
 # Environment files
 .env
 .env.*
 !.env.example
+!.env.example.production
 
-# IDE and editor files
-.vscode
-.idea
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD
+.github/
+
+# Documentation
+README.md
+docs/
+*.md
+
+# IDE
+.vscode/
+.idea/
 *.swp
 *.swo
 *~
 .DS_Store
 
+# Logs
+logs/
+*.log
+
 # Testing
-coverage
-coverage.*
-.nyc_output
-*.test.ts
-*.test.js
-*.spec.ts
-*.spec.js
-**/__tests__/**
-**/__mocks__/**
+coverage/
+.nyc_output/
 test/
 tests/
+*.test.js
+*.test.ts
+*.spec.js
+*.spec.ts
 
-# CI/CD
-.github
-.gitlab-ci.yml
-.travis.yml
-.circleci
+# Build artifacts
+dist/
+build/
+.cache/
 
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
-.pnpm-debug.log*
-
-# Cache directories
-.cache
-.parcel-cache
-.npm
-.yarn
-.bun
-.turbo
-
-# Deployment scripts (not needed in container)
+# Scripts (not needed in container)
 scripts/
-helm-charts/
-Makefile
+!scripts/build.sh
 
-# Development tools
-.editorconfig
-.prettierrc*
-.eslintrc*
-biome.json
+# Docker
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Caddy
+Caddyfile
+
+# Nginx configs (handled separately)
+nginx/
 
 # Temporary files
+tmp/
+temp/
 *.tmp
-*.temp
-.tmp
-.temp
 
-# OS files
-Thumbs.db
-.DS_Store
+# Database
+*.db
+*.sqlite
+prisma/dev.db
