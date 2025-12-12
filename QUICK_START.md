@@ -134,7 +134,7 @@ cat tu-llave.pem
 ```bash
 # En tu máquina local
 export EC2_HOST=tu-ip-ec2
-export EC2_USER=ubuntu
+export EC2_USER=ec2-user
 export SSH_KEY_PATH=./tu-llave.pem
 
 ./scripts/deploy-manual.sh
