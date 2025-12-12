@@ -20,7 +20,7 @@ jobs:
         run: bun install --frozen-lockfile
 
       - name: Run format
-        run: bun run lint --write
+        run: bun run lint
 
   lint:
     runs-on: ubuntu-latest
