@@ -1,102 +1,118 @@
 name: Deploy to EC2
 
 on:
-    workflow_run:
-        workflows: ["Build and Push Docker Image"]
-        types:
-            - completed
-        branches:
-            - main
+  workflow_run:
+    workflows: ["Push to Docker Hub"]
+    types:
+      - completed
+    branches:
+      - main
 
 jobs:
-    deploy:
-        runs-on: ubuntu-latest
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
 
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-            - name: Configure SSH
-              run: |
-                  mkdir -p ~/.ssh
-                  echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/deploy_key
-                  chmod 600 ~/.ssh/deploy_key
-                  ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+      - name: Create environment file
+        run: |
+          cat > .env.prod << EOF
+          NODE_ENV=production
+          PORT=3000
+          DATABASE_URL=${{ secrets.DATABASE_URL }}
+          BETTER_AUTH_SECRET=${{ secrets.BETTER_AUTH_SECRET }}
+          BETTER_AUTH_URL=${{ secrets.BETTER_AUTH_URL }}
+          NEXT_PUBLIC_URL=${{ secrets.NEXT_PUBLIC_URL }}
+          DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
+          IMAGE_TAG=latest
+          EOF
 
-            - name: Create environment file
-              run: |
-                  cat > .env.prod << EOF
-                  NODE_ENV=production
-                  PORT=3000
-                  DATABASE_URL=${{ secrets.DATABASE_URL }}
-                  BETTER_AUTH_SECRET=${{ secrets.BETTER_AUTH_SECRET }}
-                  BETTER_AUTH_URL=${{ secrets.BETTER_AUTH_URL }}
-                  NEXT_PUBLIC_URL=${{ secrets.NEXT_PUBLIC_URL }}
-                  DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
-                  IMAGE_TAG=latest
-                  EOF
+      - name: Copy docker-compose to EC2
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "docker-compose.prod.yml"
+          target: "~/app/"
+          strip_components: 0
 
-            - name: Copy files to EC2
-              run: |
-                  scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no \
-                    docker-compose.prod.yml \
-                    ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:~/app/docker-compose.yml
+      - name: Copy environment file to EC2
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: ".env.prod"
+          target: "~/app/"
+          strip_components: 0
 
-                  scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no \
-                    .env.prod \
-                    ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:~/app/.env
+      - name: Copy deploy script to EC2
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "scripts/ec2/deploy.sh"
+          target: "~/app/"
+          strip_components: 2
 
-                  scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no \
-                    scripts/ec2/deploy.sh \
-                    ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:~/app/deploy.sh
+      - name: Copy nginx configuration to EC2
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: "nginx/*"
+          target: "~/app/"
+          strip_components: 0
 
-            - name: Copy nginx configuration
-              run: |
-                  ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no \
-                    ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} \
-                    "mkdir -p ~/app/nginx/conf.d"
+      - name: Rename files on EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd ~/app
+            mv docker-compose.prod.yml docker-compose.yml || true
+            mv .env.prod .env || true
+            chmod +x deploy.sh
 
-                  scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no \
-                    nginx/nginx.conf \
-                    ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:~/app/nginx/nginx.conf
+      - name: Deploy application on EC2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            cd ~/app
+            ./deploy.sh
 
-                  scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no \
-                    nginx/conf.d/default.conf \
-                    ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:~/app/nginx/conf.d/default.conf
+      - name: Verify deployment
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            sleep 10
+            if curl -f http://localhost:3000/health; then
+              echo "Deployment successful - Health check passed"
+            else
+              echo "Deployment failed - Health check failed"
+              exit 1
+            fi
 
-            - name: Deploy to EC2
-              run: |
-                  ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no \
-                    ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'ENDSSH'
-                    cd ~/app
-                    
-                    # Make deploy script executable
-                    chmod +x deploy.sh
-                    
-                    # Run deployment
-                    ./deploy.sh
-                    
-                    # Verify deployment
-                    sleep 10
-                    if curl -f http://localhost:3000/health; then
-                      echo "Deployment successful - Health check passed"
-                    else
-                      echo "Deployment failed - Health check failed"
-                      exit 1
-                    fi
-                  ENDSSH
-
-            - name: Cleanup SSH key
-              if: always()
-              run: rm -f ~/.ssh/deploy_key
-
-            - name: Notify deployment status
-              if: always()
-              run: |
-                  if [ ${{ job.status }} == 'success' ]; then
-                    echo "Deployment to EC2 completed successfully!"
-                  else
-                    echo "Deployment to EC2 failed!"
-                    exit 1
-                  fi
+      - name: Deployment status
+        if: always()
+        run: |
+          if [ ${{ job.status }} == 'success' ]; then
+            echo "Deployment to EC2 completed successfully!"
+          else
+            echo "Deployment to EC2 failed!"
+            exit 1
+          fi
