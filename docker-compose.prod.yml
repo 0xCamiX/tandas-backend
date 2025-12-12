@@ -1,10 +1,9 @@
 services:
-  server:
+  backend:
     image: ${DOCKERHUB_USERNAME}/tandas-backend:${IMAGE_TAG:-latest}
     container_name: tandas-backend
     platform: linux/arm64
-    ports:
-      - "3000:3000"
+    restart: always
     environment:
       - NODE_ENV=production
       - PORT=3000
@@ -12,7 +11,6 @@ services:
       - BETTER_AUTH_SECRET=${BETTER_AUTH_SECRET}
       - BETTER_AUTH_URL=${BETTER_AUTH_URL}
       - NEXT_PUBLIC_URL=${NEXT_PUBLIC_URL}
-    restart: always
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
       interval: 30s
@@ -33,29 +31,33 @@ services:
         max-size: "10m"
         max-file: "3"
     networks:
-      - tandas-network
+      - app-network
 
   nginx:
     image: nginx:alpine
     container_name: tandas-nginx
+    restart: always
     ports:
       - "80:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/conf.d:/etc/nginx/conf.d:ro
     depends_on:
-      server:
-        condition: service_healthy
-    restart: always
-    networks:
-      - tandas-network
+      - backend
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/nginx-health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
     logging:
       driver: "json-file"
       options:
         max-size: "10m"
         max-file: "3"
+    networks:
+      - app-network
 
 networks:
-  tandas-network:
+  app-network:
     driver: bridge
-
