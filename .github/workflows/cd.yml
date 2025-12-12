@@ -1,12 +1,10 @@
 name: Deploy to EC2
 
 on:
-    workflow_run:
-        workflows: ["Build and Publish image to Docker Hub"]
-        types:
-            - completed
-        branches:
-            - develop
+    push:
+        branches: [main]
+    pull_request:
+        branches: [develop]
 
 jobs:
     deploy:
