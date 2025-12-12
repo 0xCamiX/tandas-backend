@@ -31,17 +31,16 @@ jobs:
           images: ${{ secrets.DOCKERHUB_USERNAME }}/tandas-backend
           tags: |
             type=raw,value=latest
-
-            - name: Build and push Docker image
-              uses: docker/build-push-action@v5
-              with:
-                  context: .
-                  file: ./Dockerfile
-                  platforms: linux/amd64,linux/arm64
-                  push: ${{ github.event_name != 'pull_request' }}
-                  tags: ${{ steps.meta.outputs.tags }}
-                  labels: ${{ steps.meta.outputs.labels }}
-                  secrets: |
-                      "DATABASE_URL=${{ secrets.DATABASE_URL }}"
-                  build-args: |
-                      NODE_ENV=production
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          secrets: |
+            "DATABASE_URL=${{ secrets.DATABASE_URL }}"
+          build-args: |
+            BUN_ENV=production
