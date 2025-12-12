@@ -2,6 +2,7 @@ services:
   server:
     image: ${DOCKERHUB_USERNAME}/tandas-backend:${IMAGE_TAG:-latest}
     container_name: tandas-backend
+    platform: linux/arm64
     ports:
       - "3000:3000"
     environment:
