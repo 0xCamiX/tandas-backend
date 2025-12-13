@@ -1,333 +1,598 @@
-# Product Design Document (PDD)
-## TANDAS - Plataforma Educativa de Pretratamiento de Agua
+# Product Design Document
+## TANDAS - Water Pretreatment Educational Platform
 
-**Versión:** 1.0  
-**Fecha:** 2025-01-09  
-**Autor:** Equipo TANDAS
-
----
-
-## 1. Visión del Producto
-
-### 1.1 Descripción General
-TANDAS es una plataforma educativa digital diseñada para enseñar a las personas cómo realizar el pretratamiento de agua en casa. La plataforma ofrece cursos estructurados sobre técnicas de purificación de agua, permitiendo a los usuarios aprender de manera autodidacta y práctica.
-
-### 1.2 Objetivo Principal
-Proporcionar educación accesible y de calidad sobre métodos de pretratamiento de agua doméstico, empoderando a las personas para mejorar la calidad del agua que consumen en sus hogares.
-
-### 1.3 Público Objetivo
-- Personas interesadas en mejorar la calidad del agua en sus hogares
-- Comunidades sin acceso a agua potable de calidad
-- Estudiantes y educadores en temas de salud pública
-- Profesionales que buscan conocimientos prácticos sobre tratamiento de agua
+**Version:** 1.0  
+**Date:** December 2025  
+**Author:** TANDAS Team
 
 ---
 
-## 2. Alcance del Producto
+## 1. Product Overview
 
-### 2.1 Funcionalidades Principales
+### 1.1 Vision
 
-#### 2.1.1 Gestión de Cursos
-- Visualización de catálogo de cursos disponibles
-- Información detallada de cada curso (descripción, nivel, categoría)
-- Sistema de inscripción a cursos
-- Seguimiento de progreso por curso
+TANDAS is an educational platform designed to teach domestic water pretreatment techniques. The platform provides structured courses with multimedia content, interactive quizzes, and progress tracking to empower individuals to improve water quality in their homes.
 
-#### 2.1.2 Contenido Educativo
-- Módulos estructurados dentro de cada curso
-- Contenido multimedia:
-  - Texto educativo
-  - Videos explicativos
-  - Recursos descargables (PDF, DOC, PPT)
-- Orden secuencial de módulos para aprendizaje progresivo
+### 1.2 Target Audience
 
-#### 2.1.3 Evaluación del Aprendizaje
-- Quizzes cortos al final de cada módulo
-- Preguntas de opción múltiple
-- Retroalimentación inmediata con explicaciones
-- Seguimiento de intentos y calificaciones
+- Individuals interested in water quality improvement
+- Communities without access to potable water
+- Public health students and educators
+- Professionals seeking practical water treatment knowledge
 
-#### 2.1.4 Progreso del Usuario
-- Dashboard de progreso personal
-- Completación de módulos
-- Progreso porcentual por curso
-- Historial de intentos de quizzes
+### 1.3 Core Value Proposition
 
-### 2.2 Cursos Disponibles
-
-La plataforma incluye **5 cursos específicos** sobre pretratamiento de agua:
-
-1. **Sedimentación**
-   - Técnicas de sedimentación de partículas
-   - Métodos caseros de decantación
-   - Equipos y materiales necesarios
-
-2. **Filtración**
-   - Tipos de filtros caseros
-   - Construcción de sistemas de filtración
-   - Mantenimiento y limpieza de filtros
-
-3. **Desinfección**
-   - Métodos de desinfección química
-   - Desinfección solar (SODIS)
-   - Uso de cloro y otros desinfectantes
-
-4. **Almacenamiento Seguro**
-   - Contenedores apropiados para almacenamiento
-   - Prácticas de higiene
-   - Prevención de contaminación
-
-5. **[Curso Adicional]**
-   - Por definir según necesidades del proyecto
-
-### 2.3 Funcionalidades Excluidas (v1.0)
-- Sistema de certificaciones
-- Foros de discusión
-- Chat en vivo
-- Integración con redes sociales
-- Sistema de pagos
-- Contenido generado por usuarios
+Accessible, self-paced education on essential water pretreatment methods through structured courses with practical, actionable content.
 
 ---
 
-## 3. Requisitos Funcionales
+## 2. Product Features
 
-### 3.1 Autenticación y Autorización
-- **RF-001**: Los usuarios deben poder registrarse con email y contraseña
-- **RF-002**: Los usuarios deben poder iniciar sesión
-- **RF-003**: Los usuarios deben poder cerrar sesión
-- **RF-004**: Las sesiones deben persistir entre visitas
-- **RF-005**: Solo usuarios autenticados pueden acceder a cursos
+### 2.1 User Management
 
-### 3.2 Gestión de Cursos
-- **RF-006**: Los usuarios pueden ver el catálogo completo de cursos
-- **RF-007**: Los usuarios pueden ver detalles de un curso específico
-- **RF-008**: Los usuarios pueden inscribirse a un curso
-- **RF-009**: Los usuarios pueden ver sus cursos inscritos
-- **RF-010**: Los usuarios pueden ver su progreso en cada curso
+**Registration & Authentication:**
+- Email and password registration
+- Secure session-based authentication
+- Email verification
+- Profile management
 
-### 3.3 Contenido Educativo
-- **RF-011**: Los usuarios pueden acceder a módulos de cursos en los que están inscritos
-- **RF-012**: Los módulos se presentan en orden secuencial
-- **RF-013**: Los usuarios pueden ver contenido de texto, video y recursos
-- **RF-014**: Los usuarios pueden descargar recursos asociados a módulos
+**User Profile:**
+- Personal information (name, email, avatar)
+- Learning statistics
+- Course enrollments
+- Progress tracking
 
-### 3.4 Evaluación
-- **RF-015**: Los usuarios pueden realizar quizzes al final de cada módulo
-- **RF-016**: Los quizzes muestran preguntas de opción múltiple
-- **RF-017**: Los usuarios reciben retroalimentación inmediata después de responder
-- **RF-018**: Los usuarios pueden ver su historial de intentos de quizzes
-- **RF-019**: Los usuarios pueden ver sus calificaciones por quiz
+### 2.2 Course Catalog
 
-### 3.5 Progreso
-- **RF-020**: Los usuarios pueden marcar módulos como completados
-- **RF-021**: El sistema calcula automáticamente el progreso del curso
-- **RF-022**: Los usuarios pueden ver su progreso general en el dashboard
+**Course Discovery:**
+- Browse all available courses
+- Filter by status (active/inactive)
+- Filter by category (sedimentation, filtration, etc.)
+- Filter by level (inicial, medio, avanzado)
+- Search by title and description
 
----
+**Course Information:**
+- Course title and description
+- Category and difficulty level
+- Course image
+- Module count and structure
+- Enrollment status
 
-## 4. Requisitos No Funcionales
+**Course Categories:**
+1. Sedimentación - Particle sedimentation techniques
+2. Filtración - Filtration systems and methods
+3. Desinfección - Chemical and solar disinfection
+4. Almacenamiento Seguro - Safe water storage practices
 
-### 4.1 Rendimiento
-- **RNF-001**: El tiempo de respuesta de la API debe ser menor a 200ms para el 95% de las peticiones
-- **RNF-002**: La plataforma debe soportar al menos 100 usuarios concurrentes
-- **RNF-003**: Los videos deben cargarse de manera progresiva
+**Difficulty Levels:**
+- INICIAL - Beginner level
+- MEDIO - Intermediate level
+- AVANZADO - Advanced level
 
-### 4.2 Seguridad
-- **RNF-004**: Todas las comunicaciones deben usar HTTPS
-- **RNF-005**: Las contraseñas deben almacenarse de forma encriptada
-- **RNF-006**: Los tokens de sesión deben tener expiración
-- **RNF-007**: La API debe validar todos los inputs del usuario
+### 2.3 Learning Content
 
-### 4.3 Usabilidad
-- **RNF-008**: La interfaz debe ser intuitiva y fácil de usar
-- **RNF-009**: El contenido debe ser accesible desde dispositivos móviles
-- **RNF-010**: Los mensajes de error deben ser claros y útiles
+**Course Structure:**
+- Courses contain multiple modules
+- Modules are presented in sequential order
+- Each module includes:
+  - Educational text content
+  - Video content (optional)
+  - Downloadable resources (PDFs, documents, presentations)
+  - Knowledge assessment quizzes
+  - Duration estimates
 
-### 4.4 Escalabilidad
-- **RNF-011**: La arquitectura debe permitir escalar horizontalmente
-- **RNF-012**: La base de datos debe estar optimizada con índices apropiados
-- **RNF-013**: El sistema debe soportar el crecimiento de contenido sin degradación
+**Module Resources:**
+- PDF documents
+- DOC/PPT files
+- Video links
+- External links
+- Supplementary materials
 
-### 4.5 Mantenibilidad
-- **RNF-014**: El código debe seguir estándares de calidad y documentación
-- **RNF-015**: El sistema debe tener logging apropiado para debugging
-- **RNF-016**: La arquitectura debe ser modular y fácil de extender
+### 2.4 Knowledge Assessment
 
----
+**Quiz System:**
+- Multiple choice questions per module
+- Immediate feedback on submissions
+- Explanations for correct answers
+- Multiple attempts allowed
+- Score tracking (0.0 to 1.0)
 
-## 5. Casos de Uso Principales
+**Quiz Features:**
+- Question text
+- Multiple answer options
+- Correct answer validation
+- Detailed explanations
+- Attempt history
 
-### 5.1 UC-001: Registro de Usuario
-**Actor:** Usuario nuevo  
-**Precondición:** El usuario no tiene cuenta  
-**Flujo Principal:**
-1. El usuario accede a la página de registro
-2. Ingresa email y contraseña
-3. El sistema valida los datos
-4. Se crea la cuenta
-5. El usuario es redirigido al dashboard
+### 2.5 Progress Tracking
 
-### 5.2 UC-002: Inscripción a Curso
-**Actor:** Usuario autenticado  
-**Precondición:** El usuario ha iniciado sesión  
-**Flujo Principal:**
-1. El usuario navega al catálogo de cursos
-2. Selecciona un curso de interés
-3. Visualiza los detalles del curso
-4. Hace clic en "Inscribirse"
-5. El sistema registra la inscripción
-6. El usuario es redirigido al curso
+**Course Progress:**
+- Automatic progress calculation
+- Completion percentage per course
+- Module completion status
+- Last activity tracking
 
-### 5.3 UC-003: Completar Módulo
-**Actor:** Usuario inscrito en curso  
-**Precondición:** El usuario está inscrito en un curso activo  
-**Flujo Principal:**
-1. El usuario accede al módulo siguiente del curso
-2. Revisa el contenido (texto, video, recursos)
-3. Completa el quiz del módulo
-4. Recibe retroalimentación
-5. Marca el módulo como completado
-6. El sistema actualiza el progreso del curso
+**User Statistics:**
+- Total courses enrolled
+- Completed courses count
+- Modules completed
+- Quizzes attempted
+- Average quiz scores
 
-### 5.4 UC-004: Realizar Quiz
-**Actor:** Usuario en módulo  
-**Precondición:** El usuario está viendo un módulo con quiz  
-**Flujo Principal:**
-1. El usuario accede al quiz del módulo
-2. Lee la pregunta
-3. Selecciona una o más opciones
-4. Envía sus respuestas
-5. El sistema calcula la calificación
-6. Muestra retroalimentación con explicaciones
-7. Registra el intento en el historial
+**Progress Indicators:**
+- Completed modules marked
+- Progress bars for courses
+- Enrollment dates
+- Completion timestamps
 
----
+### 2.6 Enrollment System
 
-## 6. Modelo de Datos Conceptual
+**Enrollment Features:**
+- One-click course enrollment
+- Enrollment verification
+- Unenroll capability
+- Progress persistence
+- Multiple concurrent enrollments
 
-### 6.1 Entidades Principales
-
-- **Usuario**: Información personal y credenciales
-- **Curso**: Contenido educativo estructurado
-- **Módulo**: Unidad de aprendizaje dentro de un curso
-- **Quiz**: Evaluación asociada a un módulo
-- **Opción de Quiz**: Respuestas posibles para preguntas
-- **Recurso**: Archivos y enlaces asociados a módulos
-- **Inscripción**: Relación usuario-curso
-- **Completación de Módulo**: Progreso del usuario
-- **Intento de Quiz**: Respuestas del usuario a quizzes
-
-### 6.2 Relaciones
-
-- Un Usuario puede tener múltiples Inscripciones
-- Un Curso tiene múltiples Módulos
-- Un Módulo tiene un Quiz
-- Un Quiz tiene múltiples Opciones
-- Un Módulo tiene múltiples Recursos
-- Un Usuario puede completar múltiples Módulos
-- Un Usuario puede realizar múltiples Intentos de Quiz
+**Enrollment Management:**
+- View all enrolled courses
+- Track progress per course
+- Access course modules
+- Complete modules in sequence
 
 ---
 
-## 7. Interfaz de Usuario (Conceptual)
+## 3. User Flows
 
-### 7.1 Páginas Principales
-- **Login/Registro**: Autenticación de usuarios
-- **Dashboard**: Vista general del progreso
-- **Catálogo de Cursos**: Lista de todos los cursos disponibles
-- **Detalle de Curso**: Información completa de un curso
-- **Vista de Módulo**: Contenido educativo y quiz
-- **Progreso**: Estadísticas de aprendizaje del usuario
+### 3.1 New User Registration
 
-### 7.2 Componentes Clave
-- Navegación entre módulos
-- Reproductor de video
-- Visualizador de recursos
-- Formulario de quiz interactivo
-- Barra de progreso del curso
-- Dashboard de estadísticas
+```
+1. User visits platform
+2. Clicks "Register"
+3. Enters email, password, name
+4. Submits registration form
+5. Receives confirmation
+6. Redirected to course catalog
+```
 
----
+### 3.2 Course Enrollment
 
-## 8. Métricas de Éxito
+```
+1. User browses course catalog
+2. Selects course of interest
+3. Views course details and modules
+4. Clicks "Enroll"
+5. Enrollment confirmed
+6. Access granted to course modules
+```
 
-### 8.1 Métricas de Adopción
-- Número de usuarios registrados
-- Tasa de inscripción a cursos
-- Tasa de completación de cursos
+### 3.3 Learning Journey
 
-### 8.2 Métricas de Engagement
-- Tiempo promedio en la plataforma
-- Número de módulos completados por usuario
-- Promedio de intentos de quiz por módulo
+```
+1. User accesses enrolled course
+2. Views module list
+3. Opens first module
+4. Reads content and watches video
+5. Downloads resources (optional)
+6. Takes module quiz
+7. Reviews quiz results and explanation
+8. Marks module as complete
+9. Proceeds to next module
+10. Completes course
+```
 
-### 8.3 Métricas de Calidad
-- Calificaciones promedio en quizzes
-- Tasa de aprobación de quizzes
-- Satisfacción del usuario (por implementar)
+### 3.4 Progress Review
 
----
-
-## 9. Roadmap
-
-### 9.1 Fase 1 - MVP (Versión Actual)
-- ✅ Autenticación básica
-- ✅ Esquema de base de datos
-- ⏳ API de cursos y módulos
-- ⏳ API de inscripciones
-- ⏳ API de quizzes
-- ⏳ API de progreso
-
-### 9.2 Fase 2 - Mejoras
-- Sistema de notificaciones
-- Certificados de completación
-- Búsqueda avanzada de contenido
-- Recomendaciones personalizadas
-
-### 9.3 Fase 3 - Expansión
-- Foros de discusión
-- Contenido generado por usuarios
-- Integración con redes sociales
-- Aplicación móvil nativa
+```
+1. User accesses profile
+2. Views enrolled courses
+3. Checks progress percentage
+4. Reviews completed modules
+5. Sees quiz attempt history
+6. Views overall statistics
+```
 
 ---
 
-## 10. Consideraciones Técnicas
+## 4. Functional Requirements
 
-### 10.1 Stack Tecnológico
-- **Backend**: Express.js con TypeScript
-- **Base de Datos**: PostgreSQL con Prisma ORM
-- **Autenticación**: Better Auth
-- **Runtime**: Bun
+### 4.1 Authentication (RF-001 to RF-005)
 
-### 10.2 Arquitectura
-- Arquitectura MVC Layered
-- Separación de responsabilidades por capas
-- API RESTful
+- User registration with email/password
+- User login with credentials
+- User logout
+- Session persistence
+- Protected course access
+
+### 4.2 Course Management (RF-006 to RF-010)
+
+- View all courses with filters
+- View detailed course information
+- Enroll in courses
+- View enrolled courses
+- Track course progress
+
+### 4.3 Learning Content (RF-011 to RF-014)
+
+- Access course modules after enrollment
+- View modules in sequential order
+- Access text, video, and resources
+- Download module resources
+
+### 4.4 Assessment (RF-015 to RF-019)
+
+- Take module quizzes
+- Answer multiple choice questions
+- Receive immediate feedback
+- View quiz attempt history
+- View quiz scores
+
+### 4.5 Progress Tracking (RF-020 to RF-022)
+
+- Mark modules as completed
+- Automatic progress calculation
+- View progress dashboard
 
 ---
 
-## 11. Glosario
+## 5. Non-Functional Requirements
 
-- **Módulo**: Unidad básica de contenido educativo dentro de un curso
-- **Quiz**: Evaluación corta al final de un módulo
-- **Inscripción**: Relación entre un usuario y un curso
-- **Progreso**: Porcentaje de completación de un curso
-- **Recurso**: Archivo o enlace adicional asociado a un módulo
-- **Pretratamiento**: Proceso inicial de purificación de agua antes del consumo
+### 5.1 Performance
+
+- API response time < 200ms (95th percentile)
+- Support 100+ concurrent users
+- Progressive video loading
+- Optimized database queries
+
+### 5.2 Security
+
+- HTTPS communication
+- Encrypted password storage
+- Session token expiration
+- Input validation
+- Rate limiting (10 req/s per IP)
+- Security headers via Nginx
+
+### 5.3 Usability
+
+- Intuitive navigation
+- Mobile-responsive design (frontend)
+- Clear error messages
+- Consistent API responses
+- Comprehensive API documentation
+
+### 5.4 Scalability
+
+- Horizontal scaling capability
+- Database indexing for performance
+- Connection pooling
+- Resource limits per container
+- Load balancer ready
+
+### 5.5 Reliability
+
+- 99% uptime target
+- Auto-restart on failure
+- Health check monitoring
+- Backup and recovery procedures
+- Error logging and tracking
+
+### 5.6 Maintainability
+
+- Modular code architecture
+- Comprehensive documentation
+- Consistent coding standards
+- Version control
+- Automated deployment pipeline
 
 ---
 
-## 12. Referencias
+## 6. Data Model
 
-- Documentación de Express.js
-- Documentación de Prisma
-- Documentación de Better Auth
-- Estándares de API REST
-- Mejores prácticas de seguridad web
+### 6.1 Core Entities
+
+**User:**
+- Unique identifier
+- Email (unique)
+- Name
+- Avatar image
+- Email verification status
+- Creation timestamp
+
+**Course:**
+- Unique identifier
+- Title
+- Description
+- Category
+- Difficulty level (inicial, medio, avanzado)
+- Status (activo, inactivo)
+- Course image
+- Timestamps
+
+**Module:**
+- Unique identifier
+- Course association
+- Title
+- Content text
+- Video URL
+- Sequential order
+- Duration (minutes)
+- Timestamps
+
+**Quiz:**
+- Unique identifier
+- Module association
+- Question text
+- Quiz type (multiple choice)
+- Explanation
+- Timestamps
+
+**QuizOption:**
+- Unique identifier
+- Quiz association
+- Option text
+- Correct answer flag
+- Display order
+- Timestamps
+
+**Resource:**
+- Unique identifier
+- Module association
+- Resource type (PDF, DOC, PPT, VIDEO, LINK)
+- URL/path
+- Title
+- Description
+- Timestamps
+
+### 6.2 Progress Entities
+
+**Enrollment:**
+- Unique identifier
+- User-Course association
+- Progress (0.0 to 1.0)
+- Enrollment date
+- Completion date (nullable)
+- Unique constraint: one enrollment per user-course pair
+
+**ModuleCompletion:**
+- Unique identifier
+- User-Module association
+- Completion timestamp
+- Unique constraint: one completion per user-module pair
+
+**QuizAttempt:**
+- Unique identifier
+- User-Quiz association
+- Score (0.0 to 1.0)
+- Correct flag
+- Attempt timestamp
+- Associated quiz responses
+
+**QuizResponse:**
+- Unique identifier
+- Attempt association
+- Selected option association
+- Timestamp
 
 ---
 
-**Última actualización:** 2025-01-09
+## 7. API Endpoints Summary
 
+### 7.1 Public Endpoints
+
+- `GET /health` - Health check
+- `GET /` - API information
+- `GET /api/v1/docs` - Interactive documentation
+
+### 7.2 Authentication
+
+- `POST /api/auth/sign-up/email` - Register
+- `POST /api/auth/sign-in/email` - Login
+- `POST /api/auth/sign-out` - Logout
+
+### 7.3 Courses (Public)
+
+- `GET /api/v1/courses` - List courses with filters
+- `GET /api/v1/courses/:id` - Get course details
+- `GET /api/v1/courses/:courseId/modules` - Get course with modules
+
+### 7.4 Courses (Protected)
+
+- `POST /api/v1/courses` - Create course
+- `PUT /api/v1/courses/:id` - Update course
+- `DELETE /api/v1/courses/:id` - Delete course
+
+### 7.5 Modules (Public)
+
+- `GET /api/v1/modules` - List modules
+- `GET /api/v1/modules/:id` - Get module
+- `GET /api/v1/modules/:id/full` - Get module with relations
+
+### 7.6 Modules (Protected)
+
+- `POST /api/v1/modules` - Create module
+- `PUT /api/v1/modules/:id` - Update module
+- `DELETE /api/v1/modules/:id` - Delete module
+
+### 7.7 Enrollments (All Protected)
+
+- `GET /api/v1/enrollments` - List enrollments
+- `GET /api/v1/enrollments/me` - My enrollments
+- `GET /api/v1/enrollments/courses/:courseId` - Check enrollment
+- `POST /api/v1/enrollments/courses/:courseId` - Enroll
+- `GET /api/v1/enrollments/:id` - Get enrollment
+- `DELETE /api/v1/enrollments/:id` - Unenroll
+
+### 7.8 Quizzes (Public)
+
+- `GET /api/v1/quizzes` - List quizzes
+- `GET /api/v1/quizzes/modules/:moduleId` - Module quizzes
+- `GET /api/v1/quizzes/:id/options` - Quiz with options
+
+### 7.9 Quizzes (Protected)
+
+- `GET /api/v1/quizzes/:id` - Get quiz
+- `POST /api/v1/quizzes` - Create quiz
+- `PUT /api/v1/quizzes/:id` - Update quiz
+- `DELETE /api/v1/quizzes/:id` - Delete quiz
+- `POST /api/v1/quizzes/:id/attempt` - Submit attempt
+- `GET /api/v1/quizzes/:id/attempts` - My attempts
+
+### 7.10 Module Completions (All Protected)
+
+- `GET /api/v1/module-completions` - List completions
+- `GET /api/v1/module-completions/me` - My completions
+- `POST /api/v1/module-completions/modules/:moduleId` - Complete module
+- `DELETE /api/v1/module-completions/:id` - Uncomplete module
+
+### 7.11 Users (All Protected)
+
+- `GET /api/v1/users/me` - Current user profile
+- `GET /api/v1/users/me/full` - Profile with relations
+- `PUT /api/v1/users/me` - Update profile
+- `GET /api/v1/users/me/stats` - User statistics
+- `GET /api/v1/users/me/progress` - All course progress
+- `GET /api/v1/users/me/progress/:courseId` - Course progress
+- `GET /api/v1/users/me/enrollments` - Enrollments with details
+
+---
+
+## 8. Success Metrics
+
+### 8.1 Adoption Metrics
+
+- Total registered users
+- Course enrollment rate
+- Course completion rate
+- Average enrollments per user
+
+### 8.2 Engagement Metrics
+
+- Average session duration
+- Modules completed per user
+- Quiz attempts per module
+- Return user rate
+- Daily/weekly active users
+
+### 8.3 Learning Metrics
+
+- Average quiz scores
+- Quiz pass rate (score >= 0.7)
+- Module completion time
+- Course completion time
+- Resource download rate
+
+### 8.4 Technical Metrics
+
+- API response time
+- Error rate
+- Uptime percentage
+- Concurrent users peak
+
+---
+
+## 9. Implementation Status
+
+### 9.1 Phase 1 - MVP (Completed)
+
+- Database schema design
+- Better Auth integration
+- Course CRUD operations
+- Module CRUD operations
+- Enrollment system
+- Quiz system with attempts
+- Module completion tracking
+- User profile and progress
+- API documentation (Swagger)
+- Docker containerization
+- Nginx reverse proxy
+- GitHub Actions CI pipeline
+
+### 9.2 Phase 2 - Enhancements (Planned)
+
+- Role-based access control (admin, instructor, student)
+- Course certificates
+- Advanced search and filtering
+- Pagination for large datasets
+- Email notifications
+- File upload for resources
+- Caching layer (Redis)
+- Analytics dashboard
+
+### 9.3 Phase 3 - Scale (Future)
+
+- Discussion forums per course
+- Live video streaming
+- Mobile application
+- Multi-language support
+- Social features (comments, ratings)
+- Recommendation engine
+- Gamification (badges, points)
+- Third-party integrations
+
+---
+
+## 10. Technical Constraints
+
+### 10.1 Current Limitations
+
+- No file upload capability (resources are external links)
+- No real-time notifications
+- No admin dashboard
+- No role differentiation (all authenticated users equal)
+- No course previews for non-enrolled users
+- No content versioning
+
+### 10.2 Scalability Considerations
+
+- Database hosted externally (not on EC2)
+- Single EC2 instance deployment
+- No load balancer currently
+- No CDN for media content
+- No caching layer
+
+### 10.3 Security Considerations
+
+- HTTPS configuration required for production
+- Secrets management via environment variables
+- Rate limiting at Nginx level
+- No file upload validation needed (external resources)
+
+---
+
+## 11. Glossary
+
+- **Course** - Complete educational program on a specific water treatment topic
+- **Module** - Individual learning unit within a course
+- **Quiz** - Knowledge assessment with multiple choice questions
+- **Enrollment** - User registration in a specific course
+- **Completion** - Marking a module as finished
+- **Attempt** - Quiz submission with selected answers
+- **Progress** - Percentage of course completion (0.0 to 1.0)
+- **Resource** - Supplementary material (PDF, video, link)
+- **Level** - Course difficulty (inicial, medio, avanzado)
+- **Category** - Course topic classification
+
+---
+
+## 12. Documentation Index
+
+- **API Reference:** `/docs/API.md` - Complete API endpoint documentation
+- **Technical Design:** `/docs/SDD.md` - Software architecture and implementation
+- **Deployment Guide:** `/README.md` - Setup and deployment instructions
+- **Database Schema:** `/prisma/schema.prisma` - Data model definition
+
+---
+
+## 13. Contact & Support
+
+- **Repository:** GitHub repository URL
+- **API Documentation:** `https://your-domain.com/api/v1/docs`
+- **Issue Tracking:** GitHub Issues
+- **Team:** TANDAS Development Team
+
+---
+
+**Last Updated:** December 2024  
+**Version:** 1.0  
+**Status:** MVP Completed, Production Ready

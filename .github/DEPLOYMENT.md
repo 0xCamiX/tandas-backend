@@ -476,7 +476,7 @@ docker volume ls
 
 1. **Use strong secrets**: Generate with `openssl rand -base64 32`
 2. **Keep secrets out of Git**: Never commit `.env` files
-3. **Use HTTPS in production**: Configure SSL with Caddy or Let's Encrypt
+3. **Use HTTPS in production**: Configure SSL with Let's Encrypt and Nginx
 4. **Regular updates**: Keep Docker, packages, and dependencies updated
 5. **Monitor logs**: Regularly check for suspicious activity
 6. **Backup database**: Regular automated backups of PostgreSQL
@@ -505,7 +505,7 @@ docker volume ls
 
 ## Next Steps
 
-- [ ] Configure domain name and HTTPS with Caddy
+- [ ] Configure domain name and HTTPS with Let's Encrypt (Nginx)
 - [ ] Setup monitoring with CloudWatch
 - [ ] Configure automated backups
 - [ ] Setup staging environment
