@@ -6,21 +6,6 @@ Este directorio contiene toda la documentación y configuración para el deploym
 
 ## 📖 Guías Disponibles
 
-### 🚀 [QUICK_START.md](../QUICK_START.md)
-**Para empezar rápidamente**
-
-Guía rápida en español con los pasos esenciales para desplegar en producción.
-
-**Contenido**:
-- ✅ Setup de EC2 en 5 pasos
-- ✅ Configuración de GitHub Secrets
-- ✅ Primer deployment
-- ✅ Verificación básica
-
-**Tiempo estimado**: 30-45 minutos
-
----
-
 ### 🔐 [GITHUB_SECRETS_SETUP.md](GITHUB_SECRETS_SETUP.md)
 **Configuración de Secrets en GitHub**
 
@@ -71,43 +56,26 @@ Guía para verificar que todo funciona antes de desplegar.
 
 ---
 
-### ✅ [DEPLOYMENT_CHECKLIST.md](../DEPLOYMENT_CHECKLIST.md)
-**Checklist de Implementación**
-
-Resumen de todo lo implementado y verificación de completitud.
-
-**Contenido**:
-- ✅ Lista de archivos creados
-- ✅ Arquitectura implementada
-- ✅ Features implementadas
-- ✅ Herramientas utilizadas
-- ✅ Próximos pasos
-
-**Tiempo estimado**: 10 minutos
-
----
 
 ## 🔄 Flujo de Lectura Recomendado
 
-### Para Deployment Rápido (Primera vez)
+### Para Deployment Rápido
 
-1. **[QUICK_START.md](../QUICK_START.md)** → Pasos esenciales
-2. **[GITHUB_SECRETS_SETUP.md](GITHUB_SECRETS_SETUP.md)** → Configurar secrets
-3. **Deploy!** → `git push origin main`
+1. **[GITHUB_SECRETS_SETUP.md](GITHUB_SECRETS_SETUP.md)** → Configure secrets
+2. **[DEPLOYMENT.md](DEPLOYMENT.md)** → Follow deployment guide
+3. **Deploy** → `git push origin main`
 
-**Tiempo total**: ~1 hora
+**Time**: ~1 hour
 
 ---
 
 ### Para Entender el Sistema Completo
 
-1. **[DEPLOYMENT_CHECKLIST.md](../DEPLOYMENT_CHECKLIST.md)** → Visión general
-2. **[DEPLOYMENT.md](DEPLOYMENT.md)** → Guía completa
-3. **[LOCAL_TESTING.md](LOCAL_TESTING.md)** → Verificación
-4. **[GITHUB_SECRETS_SETUP.md](GITHUB_SECRETS_SETUP.md)** → Secrets
-5. **[QUICK_START.md](../QUICK_START.md)** → Referencia rápida
+1. **[DEPLOYMENT.md](DEPLOYMENT.md)** → Complete guide
+2. **[LOCAL_TESTING.md](LOCAL_TESTING.md)** → Verification
+3. **[GITHUB_SECRETS_SETUP.md](GITHUB_SECRETS_SETUP.md)** → Secrets setup
 
-**Tiempo total**: 2-3 horas
+**Time**: 2-3 hours
 
 ---
 
@@ -163,13 +131,11 @@ Workflow original de CI (mantenerlo o integrarlo según necesites).
     └── ci.yml                     (Original CI)
 
 Raíz del proyecto:
-├── QUICK_START.md                 (Inicio rápido)
-├── DEPLOYMENT_CHECKLIST.md        (Checklist)
-├── README.md                      (Documentación principal)
-├── docker-compose.yml             (Local)
-├── docker-compose.prod.yml        (Producción)
+├── README.md                      (Main documentation)
+├── docker-compose.yml             (Local development)
+├── docker-compose.prod.yml        (Production)
 ├── Dockerfile
-├── Caddyfile                      (Reverse proxy)
+├── nginx/                         (Nginx reverse proxy config)
 └── scripts/
     ├── verify-build.sh
     ├── deploy-manual.sh
@@ -185,9 +151,6 @@ Raíz del proyecto:
 
 ## 🎯 Uso por Situación
 
-### "Quiero desplegar ahora mismo"
-→ **[QUICK_START.md](../QUICK_START.md)**
-
 ### "Necesito configurar los secrets de GitHub"
 → **[GITHUB_SECRETS_SETUP.md](GITHUB_SECRETS_SETUP.md)**
 
@@ -196,9 +159,6 @@ Raíz del proyecto:
 
 ### "¿Cómo verifico que funciona localmente?"
 → **[LOCAL_TESTING.md](LOCAL_TESTING.md)**
-
-### "¿Qué se ha implementado?"
-→ **[DEPLOYMENT_CHECKLIST.md](../DEPLOYMENT_CHECKLIST.md)**
 
 ### "Algo salió mal, necesito ayuda"
 → **[DEPLOYMENT.md](DEPLOYMENT.md)** → Sección "Troubleshooting"
@@ -241,7 +201,7 @@ Si encuentras un problema:
 
 ## ✅ Status
 
-**Última actualización**: Diciembre 2024  
+**Última actualización**: Diciembre 2025  
 **Versión de documentación**: 1.0  
 **Estado**: ✅ Completo y listo para producción
 
