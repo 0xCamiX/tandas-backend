@@ -73,12 +73,29 @@ else
     exit 1
 fi
 
-# Esperar a que el servicio esté listo
-print_info "Waiting for service to be healthy..."
-MAX_RETRIES=30
+# Esperar a que los servicios estén listos
+print_info "Waiting for services to start..."
+sleep 10
+
+# Verificar que los contenedores están corriendo
+print_info "Checking container status..."
+if docker compose ps | grep -E "(tandas-backend|tandas-nginx)" | grep "Up" > /dev/null; then
+    print_success "Containers are running"
+else
+    print_error "Containers failed to start"
+    print_info "Container status:"
+    docker compose ps
+    print_info "Container logs:"
+    docker compose logs --tail=50
+    exit 1
+fi
+
+# Verificar health endpoint a través de nginx
+print_info "Testing health endpoint via nginx..."
+MAX_RETRIES=15
 RETRY_COUNT=0
 
-until docker compose ps | grep "healthy" > /dev/null || [ $RETRY_COUNT -eq $MAX_RETRIES ]; do
+until curl -f http://localhost/health > /dev/null 2>&1 || [ $RETRY_COUNT -eq $MAX_RETRIES ]; do
     echo -n "."
     sleep 2
     RETRY_COUNT=$((RETRY_COUNT + 1))
@@ -86,27 +103,13 @@ done
 echo ""
 
 if [ $RETRY_COUNT -eq $MAX_RETRIES ]; then
-    print_error "Service did not become healthy in time"
-    print_info "Container logs:"
-    docker compose logs --tail=50
-    print_info "Attempting rollback..."
-    docker compose down
-    exit 1
-fi
-
-print_success "Service is healthy"
-
-# Verificar health endpoint
-print_info "Testing health endpoint..."
-sleep 3
-if curl -f http://localhost:3000/health > /dev/null 2>&1; then
-    print_success "Health check passed"
-else
     print_error "Health check failed"
     print_info "Container logs:"
     docker compose logs --tail=50
     exit 1
 fi
+
+print_success "Health check passed - Application is responding"
 
 # Limpiar imágenes antiguas
 print_info "Cleaning up old images..."
