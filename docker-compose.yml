@@ -1,20 +1,36 @@
 services:
   server:
     image: tandas-rest-api
+    container_name: tandas-backend
     build:
       context: .
       dockerfile: Dockerfile
       secrets:
         - DATABASE_URL
     ports:
-      - 3000:3000
+      - "3000:3000"
     env_file:
       - .env
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    networks:
+      - tandas-network
+
+networks:
+  tandas-network:
+    driver: bridge
 
 secrets:
   DATABASE_URL:
