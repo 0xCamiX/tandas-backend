@@ -112,10 +112,11 @@ model Module {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 
-  course      Course             @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  quizzes     Quiz[]
-  resources   Resource[]
-  completions ModuleCompletion[]
+  course       Course             @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  quizzes      Quiz[]
+  resources    Resource[]
+  completions  ModuleCompletion[]
+  quizAttempts QuizAttempt[]
 
   @@index([courseId])
   @@index([courseId, order])
@@ -226,6 +227,7 @@ model QuizAttempt {
   id          String   @id @default(uuid())
   userId      String
   quizId      String
+  moduleId    String
   score       Float // 0.0 to 1.0
   isCorrect   Boolean
   attemptedAt DateTime @default(now())
@@ -234,10 +236,12 @@ model QuizAttempt {
 
   user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
   quiz      Quiz           @relation(fields: [quizId], references: [id], onDelete: Cascade)
+  module    Module         @relation(fields: [moduleId], references: [id], onDelete: Cascade)
   responses QuizResponse[]
 
   @@index([userId])
   @@index([quizId])
+  @@index([moduleId])
   @@index([userId, quizId])
   @@map("quiz_attempts")
 }

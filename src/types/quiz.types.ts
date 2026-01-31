@@ -50,6 +50,7 @@ export interface QuizAttemptResponse {
 	id: string;
 	userId: string;
 	quizId: string;
+	moduleId: string;
 	score: number;
 	isCorrect: boolean;
 	attemptedAt: Date;
