@@ -1,5 +1,5 @@
 # API Documentation
-## TANDAS Backend REST API
+## YAKU Backend REST API
 
 **Version:** 1.0  
 **Base URL:** `/api/v1`  
@@ -9,7 +9,7 @@
 
 ## Overview
 
-The TANDAS API provides endpoints for managing educational content related to water pretreatment. The API follows REST principles and returns JSON responses.
+The YAKU API provides endpoints for managing educational content related to water pretreatment. The API follows REST principles and returns JSON responses.
 
 ### Base Response Format
 

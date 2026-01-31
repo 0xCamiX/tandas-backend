@@ -1,9 +1,9 @@
 # Product Design Document
-## TANDAS - Water Pretreatment Educational Platform
+## YAKU - Water Pretreatment Educational Platform
 
 **Version:** 1.0  
 **Date:** December 2025  
-**Author:** TANDAS Team
+**Author:** YAKU Team
 
 ---
 
@@ -11,7 +11,7 @@
 
 ### 1.1 Vision
 
-TANDAS is an educational platform designed to teach domestic water pretreatment techniques. The platform provides structured courses with multimedia content, interactive quizzes, and progress tracking to empower individuals to improve water quality in their homes.
+YAKU is an educational platform designed to teach domestic water pretreatment techniques. The platform provides structured courses with multimedia content, interactive quizzes, and progress tracking to empower individuals to improve water quality in their homes.
 
 ### 1.2 Target Audience
 
@@ -589,7 +589,7 @@ Accessible, self-paced education on essential water pretreatment methods through
 - **Repository:** GitHub repository URL
 - **API Documentation:** `https://your-domain.com/api/v1/docs`
 - **Issue Tracking:** GitHub Issues
-- **Team:** TANDAS Development Team
+- **Team:** YAKU Development Team
 
 ---
 

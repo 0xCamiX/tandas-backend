@@ -1,4 +1,4 @@
-# TANDAS Backend API
+# YAKU Backend API
 
 REST API for water pretreatment educational platform.
 
@@ -59,10 +59,10 @@ docker compose down       # Stop services
 
 ```bash
 # Build image
-docker build --secret id=DATABASE_URL,env=DATABASE_URL -t tandas-backend .
+docker build --secret id=DATABASE_URL,env=DATABASE_URL -t yaku-backend .
 
 # Run container
-docker run --env-file .env -p 3000:3000 tandas-backend
+docker run --env-file .env -p 3000:3000 yaku-backend
 ```
 
 ## Environment Variables
@@ -224,9 +224,9 @@ External PostgreSQL
 
 ```bash
 # Systemd
-sudo systemctl status tandas-backend
-sudo systemctl restart tandas-backend
-sudo journalctl -u tandas-backend -f
+sudo systemctl status yaku-backend
+sudo systemctl restart yaku-backend
+sudo journalctl -u yaku-backend -f
 
 # Docker
 docker compose ps

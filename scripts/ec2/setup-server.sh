@@ -5,7 +5,7 @@
 
 set -e
 
-echo "Setting up EC2 server for TANDAS Backend (Amazon Linux 2023)"
+echo "Setting up EC2 server for YAKU Backend (Amazon Linux 2023)"
 echo "============================================"
 
 # Colores
@@ -126,7 +126,7 @@ fi
 
 # Configurar log rotation
 print_info "Configuring log rotation..."
-sudo tee /etc/logrotate.d/tandas-backend > /dev/null << 'EOF'
+sudo tee /etc/logrotate.d/yaku-backend > /dev/null << 'EOF'
 /home/*/app/logs/*.log {
     daily
     rotate 7

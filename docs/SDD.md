@@ -1,15 +1,15 @@
 # Software Design Document
-## TANDAS Backend - Technical Architecture
+## YAKU Backend - Technical Architecture
 
 **Version:** 1.0  
 **Date:** December 2025  
-**Author:** TANDAS Team
+**Author:** YAKU Team
 
 ---
 
 ## 1. Executive Summary
 
-TANDAS Backend is a REST API built with Bun, TypeScript, Express.js, and Better Auth. The system follows a layered architecture pattern with clear separation of concerns across controllers, services, and data access layers.
+YAKU Backend is a REST API built with Bun, TypeScript, Express.js, and Better Auth. The system follows a layered architecture pattern with clear separation of concerns across controllers, services, and data access layers.
 
 ### Technology Stack
 

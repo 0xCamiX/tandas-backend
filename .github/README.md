@@ -1,6 +1,6 @@
-# 📚 TANDAS Backend - DevOps Documentation
+# 📚 YAKU Backend - DevOps Documentation
 
-Este directorio contiene toda la documentación y configuración para el deployment del backend de TANDAS.
+Este directorio contiene toda la documentación y configuración para el deployment del backend de YAKU.
 
 ---
 

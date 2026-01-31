@@ -13,7 +13,7 @@ export const safeStorageCourse: SeedCourse = {
 			title: "Riesgo de recontaminación y principios de almacenamiento seguro",
 			order: 1,
 			duration: 30,
-			content: `En este módulo conocerás el concepto de recontaminación y por qué el almacenamiento seguro es una barrera clave dentro del enfoque TANDAS.
+			content: `En este módulo conocerás el concepto de recontaminación y por qué el almacenamiento seguro es una barrera clave dentro del enfoque YAKU.
 
 Aunque el agua haya sido tratada (por ejemplo, hervida, clorada o desinfectada con SODIS), puede volver a contaminarse si se manipula de forma inadecuada. La recontaminación puede ocurrir cuando:
 
