@@ -5,7 +5,7 @@
 
 set -e
 
-echo "Deploying TANDAS Backend"
+echo "Deploying YAKU Backend"
 echo "==========================="
 
 # Colores
@@ -79,7 +79,7 @@ sleep 10
 
 # Verificar que los contenedores están corriendo
 print_info "Checking container status..."
-if docker compose ps | grep -E "(tandas-backend|tandas-nginx)" | grep "Up" > /dev/null; then
+if docker compose ps | grep -E "(yaku-backend|yaku-nginx)" | grep "Up" > /dev/null; then
     print_success "Containers are running"
 else
     print_error "Containers failed to start"

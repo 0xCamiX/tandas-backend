@@ -4,12 +4,12 @@ import swaggerJsdoc from "swagger-jsdoc";
 const swaggerDefinition: SwaggerDefinition = {
 	openapi: "3.0.0",
 	info: {
-		title: "TANDAS API",
+		title: "YAKU API",
 		version: "1.0.0",
 		description:
-			"API para la plataforma educativa TANDAS - Cursos de tratamiento de agua",
+			"API para la plataforma educativa YAKU - Cursos de tratamiento de agua",
 		contact: {
-			name: "TANDAS Team",
+			name: "YAKU Team",
 		},
 	},
 	servers: [

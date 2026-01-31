@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Rollback script for TANDAS Backend
+# Rollback script for YAKU Backend
 # This script rolls back to a previous Docker image version
 
 set -e
 
-echo "Rolling back TANDAS Backend"
+echo "Rolling back YAKU Backend"
 echo "=============================="
 
 GREEN='\033[0;32m'
@@ -30,7 +30,7 @@ if [ -z "$1" ]; then
     print_error "Usage: ./rollback.sh <image-tag>"
     echo ""
     echo "Available tags:"
-    docker images | grep tandas-backend || echo "No images found"
+    docker images | grep yaku-backend || echo "No images found"
     exit 1
 fi
 
@@ -43,7 +43,7 @@ if ! docker images | grep -q "$IMAGE_TAG"; then
     print_error "Image with tag $IMAGE_TAG not found locally"
     print_info "Attempting to pull from Docker Hub..."
     
-    if ! docker pull ${DOCKERHUB_USERNAME:-}/tandas-backend:$IMAGE_TAG; then
+    if ! docker pull ${DOCKERHUB_USERNAME:-}/yaku-backend:$IMAGE_TAG; then
         print_error "Failed to pull image from Docker Hub"
         exit 1
     fi

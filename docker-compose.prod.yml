@@ -1,7 +1,7 @@
 services:
   backend:
-    image: ${DOCKERHUB_USERNAME}/tandas-backend:${IMAGE_TAG:-latest}
-    container_name: tandas-backend
+    image: ${DOCKERHUB_USERNAME}/yaku-backend:${IMAGE_TAG:-latest}
+    container_name: yaku-backend
     platform: linux/arm64
     restart: always
     environment:
@@ -29,7 +29,7 @@ services:
 
   nginx:
     image: nginx:alpine
-    container_name: tandas-nginx
+    container_name: yaku-nginx
     restart: always
     ports:
       - "80:80"

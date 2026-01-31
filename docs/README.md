@@ -1,7 +1,7 @@
 # Documentation Index
-## TANDAS Backend Documentation
+## YAKU Backend Documentation
 
-This folder contains comprehensive technical and product documentation for the TANDAS Backend API.
+This folder contains comprehensive technical and product documentation for the YAKU Backend API.
 
 ---
 

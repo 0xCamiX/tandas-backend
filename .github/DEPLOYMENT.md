@@ -1,6 +1,6 @@
-# 🚀 TANDAS Backend - Deployment Guide
+# 🚀 YAKU Backend - Deployment Guide
 
-Complete guide for deploying the TANDAS Backend API to AWS EC2 with Docker and GitHub Actions.
+Complete guide for deploying the YAKU Backend API to AWS EC2 with Docker and GitHub Actions.
 
 ## Table of Contents
 
@@ -158,11 +158,11 @@ Paste into GitHub Secrets as `EC2_SSH_KEY`.
 
 1. Log in to Docker Hub
 2. Click "Create Repository"
-3. Name: `tandas-backend`
+3. Name: `yaku-backend`
 4. Visibility: Private (recommended) or Public
 5. Create
 
-Your image will be: `your-username/tandas-backend`
+Your image will be: `your-username/yaku-backend`
 
 ---
 
@@ -224,7 +224,7 @@ Once setup is complete, deployments are fully automated:
 
 - **GitHub Actions**: Repository → Actions tab
 - **EC2 Logs**: `ssh ubuntu@your-ec2-ip "cd ~/app && docker compose logs -f"`
-- **Systemd**: `ssh ubuntu@your-ec2-ip "sudo journalctl -u tandas-backend -f"`
+- **Systemd**: `ssh ubuntu@your-ec2-ip "sudo journalctl -u yaku-backend -f"`
 
 ---
 
@@ -237,7 +237,7 @@ Once setup is complete, deployments are fully automated:
 ssh -i your-key.pem ubuntu@your-ec2-ip
 
 # Check systemd service
-sudo systemctl status tandas-backend
+sudo systemctl status yaku-backend
 
 # Check Docker containers
 docker compose ps
@@ -305,7 +305,7 @@ The deployment script automatically rolls back if health checks fail.
 ssh -i your-key.pem ubuntu@your-ec2-ip
 
 # List available image tags
-docker images | grep tandas-backend
+docker images | grep yaku-backend
 
 # Rollback to specific version
 cd ~/app
@@ -436,22 +436,22 @@ docker compose exec server bash
 
 ```bash
 # Check status
-sudo systemctl status tandas-backend
+sudo systemctl status yaku-backend
 
 # Start service
-sudo systemctl start tandas-backend
+sudo systemctl start yaku-backend
 
 # Stop service
-sudo systemctl stop tandas-backend
+sudo systemctl stop yaku-backend
 
 # Restart service
-sudo systemctl restart tandas-backend
+sudo systemctl restart yaku-backend
 
 # View logs
-sudo journalctl -u tandas-backend -f
+sudo journalctl -u yaku-backend -f
 
 # View recent logs
-sudo journalctl -u tandas-backend -n 100
+sudo journalctl -u yaku-backend -n 100
 ```
 
 ### Monitoring Commands
@@ -464,7 +464,7 @@ docker stats
 docker compose exec server env
 
 # Network inspect
-docker network inspect tandas-network
+docker network inspect yaku-network
 
 # Volume inspect
 docker volume ls

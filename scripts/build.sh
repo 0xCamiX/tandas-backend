@@ -15,5 +15,5 @@ fi
 
 docker build \
     --secret id=DATABASE_URL,env=DATABASE_URL \
-    -t tandas-rest-api \
+    -t yaku-rest-api \
     .
