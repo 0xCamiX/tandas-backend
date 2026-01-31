@@ -38,6 +38,7 @@ export type QuizAttemptMinAggregateOutputType = {
   id: string | null
   userId: string | null
   quizId: string | null
+  moduleId: string | null
   score: number | null
   isCorrect: boolean | null
   attemptedAt: Date | null
@@ -49,6 +50,7 @@ export type QuizAttemptMaxAggregateOutputType = {
   id: string | null
   userId: string | null
   quizId: string | null
+  moduleId: string | null
   score: number | null
   isCorrect: boolean | null
   attemptedAt: Date | null
@@ -60,6 +62,7 @@ export type QuizAttemptCountAggregateOutputType = {
   id: number
   userId: number
   quizId: number
+  moduleId: number
   score: number
   isCorrect: number
   attemptedAt: number
@@ -81,6 +84,7 @@ export type QuizAttemptMinAggregateInputType = {
   id?: true
   userId?: true
   quizId?: true
+  moduleId?: true
   score?: true
   isCorrect?: true
   attemptedAt?: true
@@ -92,6 +96,7 @@ export type QuizAttemptMaxAggregateInputType = {
   id?: true
   userId?: true
   quizId?: true
+  moduleId?: true
   score?: true
   isCorrect?: true
   attemptedAt?: true
@@ -103,6 +108,7 @@ export type QuizAttemptCountAggregateInputType = {
   id?: true
   userId?: true
   quizId?: true
+  moduleId?: true
   score?: true
   isCorrect?: true
   attemptedAt?: true
@@ -201,6 +207,7 @@ export type QuizAttemptGroupByOutputType = {
   id: string
   userId: string
   quizId: string
+  moduleId: string
   score: number
   isCorrect: boolean
   attemptedAt: Date
@@ -235,6 +242,7 @@ export type QuizAttemptWhereInput = {
   id?: Prisma.StringFilter<"QuizAttempt"> | string
   userId?: Prisma.StringFilter<"QuizAttempt"> | string
   quizId?: Prisma.StringFilter<"QuizAttempt"> | string
+  moduleId?: Prisma.StringFilter<"QuizAttempt"> | string
   score?: Prisma.FloatFilter<"QuizAttempt"> | number
   isCorrect?: Prisma.BoolFilter<"QuizAttempt"> | boolean
   attemptedAt?: Prisma.DateTimeFilter<"QuizAttempt"> | Date | string
@@ -242,6 +250,7 @@ export type QuizAttemptWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"QuizAttempt"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   quiz?: Prisma.XOR<Prisma.QuizScalarRelationFilter, Prisma.QuizWhereInput>
+  module?: Prisma.XOR<Prisma.ModuleScalarRelationFilter, Prisma.ModuleWhereInput>
   responses?: Prisma.QuizResponseListRelationFilter
 }
 
@@ -249,6 +258,7 @@ export type QuizAttemptOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   quizId?: Prisma.SortOrder
+  moduleId?: Prisma.SortOrder
   score?: Prisma.SortOrder
   isCorrect?: Prisma.SortOrder
   attemptedAt?: Prisma.SortOrder
@@ -256,6 +266,7 @@ export type QuizAttemptOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   quiz?: Prisma.QuizOrderByWithRelationInput
+  module?: Prisma.ModuleOrderByWithRelationInput
   responses?: Prisma.QuizResponseOrderByRelationAggregateInput
 }
 
@@ -266,6 +277,7 @@ export type QuizAttemptWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.QuizAttemptWhereInput | Prisma.QuizAttemptWhereInput[]
   userId?: Prisma.StringFilter<"QuizAttempt"> | string
   quizId?: Prisma.StringFilter<"QuizAttempt"> | string
+  moduleId?: Prisma.StringFilter<"QuizAttempt"> | string
   score?: Prisma.FloatFilter<"QuizAttempt"> | number
   isCorrect?: Prisma.BoolFilter<"QuizAttempt"> | boolean
   attemptedAt?: Prisma.DateTimeFilter<"QuizAttempt"> | Date | string
@@ -273,6 +285,7 @@ export type QuizAttemptWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"QuizAttempt"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   quiz?: Prisma.XOR<Prisma.QuizScalarRelationFilter, Prisma.QuizWhereInput>
+  module?: Prisma.XOR<Prisma.ModuleScalarRelationFilter, Prisma.ModuleWhereInput>
   responses?: Prisma.QuizResponseListRelationFilter
 }, "id">
 
@@ -280,6 +293,7 @@ export type QuizAttemptOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   quizId?: Prisma.SortOrder
+  moduleId?: Prisma.SortOrder
   score?: Prisma.SortOrder
   isCorrect?: Prisma.SortOrder
   attemptedAt?: Prisma.SortOrder
@@ -299,6 +313,7 @@ export type QuizAttemptScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"QuizAttempt"> | string
   userId?: Prisma.StringWithAggregatesFilter<"QuizAttempt"> | string
   quizId?: Prisma.StringWithAggregatesFilter<"QuizAttempt"> | string
+  moduleId?: Prisma.StringWithAggregatesFilter<"QuizAttempt"> | string
   score?: Prisma.FloatWithAggregatesFilter<"QuizAttempt"> | number
   isCorrect?: Prisma.BoolWithAggregatesFilter<"QuizAttempt"> | boolean
   attemptedAt?: Prisma.DateTimeWithAggregatesFilter<"QuizAttempt"> | Date | string
@@ -315,6 +330,7 @@ export type QuizAttemptCreateInput = {
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutQuizAttemptsInput
   quiz: Prisma.QuizCreateNestedOneWithoutAttemptsInput
+  module: Prisma.ModuleCreateNestedOneWithoutQuizAttemptsInput
   responses?: Prisma.QuizResponseCreateNestedManyWithoutAttemptInput
 }
 
@@ -322,6 +338,7 @@ export type QuizAttemptUncheckedCreateInput = {
   id?: string
   userId: string
   quizId: string
+  moduleId: string
   score: number
   isCorrect: boolean
   attemptedAt?: Date | string
@@ -339,6 +356,7 @@ export type QuizAttemptUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutQuizAttemptsNestedInput
   quiz?: Prisma.QuizUpdateOneRequiredWithoutAttemptsNestedInput
+  module?: Prisma.ModuleUpdateOneRequiredWithoutQuizAttemptsNestedInput
   responses?: Prisma.QuizResponseUpdateManyWithoutAttemptNestedInput
 }
 
@@ -346,6 +364,7 @@ export type QuizAttemptUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   quizId?: Prisma.StringFieldUpdateOperationsInput | string
+  moduleId?: Prisma.StringFieldUpdateOperationsInput | string
   score?: Prisma.FloatFieldUpdateOperationsInput | number
   isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean
   attemptedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -358,6 +377,7 @@ export type QuizAttemptCreateManyInput = {
   id?: string
   userId: string
   quizId: string
+  moduleId: string
   score: number
   isCorrect: boolean
   attemptedAt?: Date | string
@@ -378,6 +398,7 @@ export type QuizAttemptUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   quizId?: Prisma.StringFieldUpdateOperationsInput | string
+  moduleId?: Prisma.StringFieldUpdateOperationsInput | string
   score?: Prisma.FloatFieldUpdateOperationsInput | number
   isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean
   attemptedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -399,6 +420,7 @@ export type QuizAttemptCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   quizId?: Prisma.SortOrder
+  moduleId?: Prisma.SortOrder
   score?: Prisma.SortOrder
   isCorrect?: Prisma.SortOrder
   attemptedAt?: Prisma.SortOrder
@@ -414,6 +436,7 @@ export type QuizAttemptMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   quizId?: Prisma.SortOrder
+  moduleId?: Prisma.SortOrder
   score?: Prisma.SortOrder
   isCorrect?: Prisma.SortOrder
   attemptedAt?: Prisma.SortOrder
@@ -425,6 +448,7 @@ export type QuizAttemptMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   userId?: Prisma.SortOrder
   quizId?: Prisma.SortOrder
+  moduleId?: Prisma.SortOrder
   score?: Prisma.SortOrder
   isCorrect?: Prisma.SortOrder
   attemptedAt?: Prisma.SortOrder
@@ -480,6 +504,48 @@ export type QuizAttemptUncheckedUpdateManyWithoutUserNestedInput = {
   connect?: Prisma.QuizAttemptWhereUniqueInput | Prisma.QuizAttemptWhereUniqueInput[]
   update?: Prisma.QuizAttemptUpdateWithWhereUniqueWithoutUserInput | Prisma.QuizAttemptUpdateWithWhereUniqueWithoutUserInput[]
   updateMany?: Prisma.QuizAttemptUpdateManyWithWhereWithoutUserInput | Prisma.QuizAttemptUpdateManyWithWhereWithoutUserInput[]
+  deleteMany?: Prisma.QuizAttemptScalarWhereInput | Prisma.QuizAttemptScalarWhereInput[]
+}
+
+export type QuizAttemptCreateNestedManyWithoutModuleInput = {
+  create?: Prisma.XOR<Prisma.QuizAttemptCreateWithoutModuleInput, Prisma.QuizAttemptUncheckedCreateWithoutModuleInput> | Prisma.QuizAttemptCreateWithoutModuleInput[] | Prisma.QuizAttemptUncheckedCreateWithoutModuleInput[]
+  connectOrCreate?: Prisma.QuizAttemptCreateOrConnectWithoutModuleInput | Prisma.QuizAttemptCreateOrConnectWithoutModuleInput[]
+  createMany?: Prisma.QuizAttemptCreateManyModuleInputEnvelope
+  connect?: Prisma.QuizAttemptWhereUniqueInput | Prisma.QuizAttemptWhereUniqueInput[]
+}
+
+export type QuizAttemptUncheckedCreateNestedManyWithoutModuleInput = {
+  create?: Prisma.XOR<Prisma.QuizAttemptCreateWithoutModuleInput, Prisma.QuizAttemptUncheckedCreateWithoutModuleInput> | Prisma.QuizAttemptCreateWithoutModuleInput[] | Prisma.QuizAttemptUncheckedCreateWithoutModuleInput[]
+  connectOrCreate?: Prisma.QuizAttemptCreateOrConnectWithoutModuleInput | Prisma.QuizAttemptCreateOrConnectWithoutModuleInput[]
+  createMany?: Prisma.QuizAttemptCreateManyModuleInputEnvelope
+  connect?: Prisma.QuizAttemptWhereUniqueInput | Prisma.QuizAttemptWhereUniqueInput[]
+}
+
+export type QuizAttemptUpdateManyWithoutModuleNestedInput = {
+  create?: Prisma.XOR<Prisma.QuizAttemptCreateWithoutModuleInput, Prisma.QuizAttemptUncheckedCreateWithoutModuleInput> | Prisma.QuizAttemptCreateWithoutModuleInput[] | Prisma.QuizAttemptUncheckedCreateWithoutModuleInput[]
+  connectOrCreate?: Prisma.QuizAttemptCreateOrConnectWithoutModuleInput | Prisma.QuizAttemptCreateOrConnectWithoutModuleInput[]
+  upsert?: Prisma.QuizAttemptUpsertWithWhereUniqueWithoutModuleInput | Prisma.QuizAttemptUpsertWithWhereUniqueWithoutModuleInput[]
+  createMany?: Prisma.QuizAttemptCreateManyModuleInputEnvelope
+  set?: Prisma.QuizAttemptWhereUniqueInput | Prisma.QuizAttemptWhereUniqueInput[]
+  disconnect?: Prisma.QuizAttemptWhereUniqueInput | Prisma.QuizAttemptWhereUniqueInput[]
+  delete?: Prisma.QuizAttemptWhereUniqueInput | Prisma.QuizAttemptWhereUniqueInput[]
+  connect?: Prisma.QuizAttemptWhereUniqueInput | Prisma.QuizAttemptWhereUniqueInput[]
+  update?: Prisma.QuizAttemptUpdateWithWhereUniqueWithoutModuleInput | Prisma.QuizAttemptUpdateWithWhereUniqueWithoutModuleInput[]
+  updateMany?: Prisma.QuizAttemptUpdateManyWithWhereWithoutModuleInput | Prisma.QuizAttemptUpdateManyWithWhereWithoutModuleInput[]
+  deleteMany?: Prisma.QuizAttemptScalarWhereInput | Prisma.QuizAttemptScalarWhereInput[]
+}
+
+export type QuizAttemptUncheckedUpdateManyWithoutModuleNestedInput = {
+  create?: Prisma.XOR<Prisma.QuizAttemptCreateWithoutModuleInput, Prisma.QuizAttemptUncheckedCreateWithoutModuleInput> | Prisma.QuizAttemptCreateWithoutModuleInput[] | Prisma.QuizAttemptUncheckedCreateWithoutModuleInput[]
+  connectOrCreate?: Prisma.QuizAttemptCreateOrConnectWithoutModuleInput | Prisma.QuizAttemptCreateOrConnectWithoutModuleInput[]
+  upsert?: Prisma.QuizAttemptUpsertWithWhereUniqueWithoutModuleInput | Prisma.QuizAttemptUpsertWithWhereUniqueWithoutModuleInput[]
+  createMany?: Prisma.QuizAttemptCreateManyModuleInputEnvelope
+  set?: Prisma.QuizAttemptWhereUniqueInput | Prisma.QuizAttemptWhereUniqueInput[]
+  disconnect?: Prisma.QuizAttemptWhereUniqueInput | Prisma.QuizAttemptWhereUniqueInput[]
+  delete?: Prisma.QuizAttemptWhereUniqueInput | Prisma.QuizAttemptWhereUniqueInput[]
+  connect?: Prisma.QuizAttemptWhereUniqueInput | Prisma.QuizAttemptWhereUniqueInput[]
+  update?: Prisma.QuizAttemptUpdateWithWhereUniqueWithoutModuleInput | Prisma.QuizAttemptUpdateWithWhereUniqueWithoutModuleInput[]
+  updateMany?: Prisma.QuizAttemptUpdateManyWithWhereWithoutModuleInput | Prisma.QuizAttemptUpdateManyWithWhereWithoutModuleInput[]
   deleteMany?: Prisma.QuizAttemptScalarWhereInput | Prisma.QuizAttemptScalarWhereInput[]
 }
 
@@ -547,12 +613,14 @@ export type QuizAttemptCreateWithoutUserInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   quiz: Prisma.QuizCreateNestedOneWithoutAttemptsInput
+  module: Prisma.ModuleCreateNestedOneWithoutQuizAttemptsInput
   responses?: Prisma.QuizResponseCreateNestedManyWithoutAttemptInput
 }
 
 export type QuizAttemptUncheckedCreateWithoutUserInput = {
   id?: string
   quizId: string
+  moduleId: string
   score: number
   isCorrect: boolean
   attemptedAt?: Date | string
@@ -594,11 +662,62 @@ export type QuizAttemptScalarWhereInput = {
   id?: Prisma.StringFilter<"QuizAttempt"> | string
   userId?: Prisma.StringFilter<"QuizAttempt"> | string
   quizId?: Prisma.StringFilter<"QuizAttempt"> | string
+  moduleId?: Prisma.StringFilter<"QuizAttempt"> | string
   score?: Prisma.FloatFilter<"QuizAttempt"> | number
   isCorrect?: Prisma.BoolFilter<"QuizAttempt"> | boolean
   attemptedAt?: Prisma.DateTimeFilter<"QuizAttempt"> | Date | string
   createdAt?: Prisma.DateTimeFilter<"QuizAttempt"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"QuizAttempt"> | Date | string
+}
+
+export type QuizAttemptCreateWithoutModuleInput = {
+  id?: string
+  score: number
+  isCorrect: boolean
+  attemptedAt?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutQuizAttemptsInput
+  quiz: Prisma.QuizCreateNestedOneWithoutAttemptsInput
+  responses?: Prisma.QuizResponseCreateNestedManyWithoutAttemptInput
+}
+
+export type QuizAttemptUncheckedCreateWithoutModuleInput = {
+  id?: string
+  userId: string
+  quizId: string
+  score: number
+  isCorrect: boolean
+  attemptedAt?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  responses?: Prisma.QuizResponseUncheckedCreateNestedManyWithoutAttemptInput
+}
+
+export type QuizAttemptCreateOrConnectWithoutModuleInput = {
+  where: Prisma.QuizAttemptWhereUniqueInput
+  create: Prisma.XOR<Prisma.QuizAttemptCreateWithoutModuleInput, Prisma.QuizAttemptUncheckedCreateWithoutModuleInput>
+}
+
+export type QuizAttemptCreateManyModuleInputEnvelope = {
+  data: Prisma.QuizAttemptCreateManyModuleInput | Prisma.QuizAttemptCreateManyModuleInput[]
+  skipDuplicates?: boolean
+}
+
+export type QuizAttemptUpsertWithWhereUniqueWithoutModuleInput = {
+  where: Prisma.QuizAttemptWhereUniqueInput
+  update: Prisma.XOR<Prisma.QuizAttemptUpdateWithoutModuleInput, Prisma.QuizAttemptUncheckedUpdateWithoutModuleInput>
+  create: Prisma.XOR<Prisma.QuizAttemptCreateWithoutModuleInput, Prisma.QuizAttemptUncheckedCreateWithoutModuleInput>
+}
+
+export type QuizAttemptUpdateWithWhereUniqueWithoutModuleInput = {
+  where: Prisma.QuizAttemptWhereUniqueInput
+  data: Prisma.XOR<Prisma.QuizAttemptUpdateWithoutModuleInput, Prisma.QuizAttemptUncheckedUpdateWithoutModuleInput>
+}
+
+export type QuizAttemptUpdateManyWithWhereWithoutModuleInput = {
+  where: Prisma.QuizAttemptScalarWhereInput
+  data: Prisma.XOR<Prisma.QuizAttemptUpdateManyMutationInput, Prisma.QuizAttemptUncheckedUpdateManyWithoutModuleInput>
 }
 
 export type QuizAttemptCreateWithoutQuizInput = {
@@ -609,12 +728,14 @@ export type QuizAttemptCreateWithoutQuizInput = {
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutQuizAttemptsInput
+  module: Prisma.ModuleCreateNestedOneWithoutQuizAttemptsInput
   responses?: Prisma.QuizResponseCreateNestedManyWithoutAttemptInput
 }
 
 export type QuizAttemptUncheckedCreateWithoutQuizInput = {
   id?: string
   userId: string
+  moduleId: string
   score: number
   isCorrect: boolean
   attemptedAt?: Date | string
@@ -658,12 +779,14 @@ export type QuizAttemptCreateWithoutResponsesInput = {
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutQuizAttemptsInput
   quiz: Prisma.QuizCreateNestedOneWithoutAttemptsInput
+  module: Prisma.ModuleCreateNestedOneWithoutQuizAttemptsInput
 }
 
 export type QuizAttemptUncheckedCreateWithoutResponsesInput = {
   id?: string
   userId: string
   quizId: string
+  moduleId: string
   score: number
   isCorrect: boolean
   attemptedAt?: Date | string
@@ -696,12 +819,14 @@ export type QuizAttemptUpdateWithoutResponsesInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutQuizAttemptsNestedInput
   quiz?: Prisma.QuizUpdateOneRequiredWithoutAttemptsNestedInput
+  module?: Prisma.ModuleUpdateOneRequiredWithoutQuizAttemptsNestedInput
 }
 
 export type QuizAttemptUncheckedUpdateWithoutResponsesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   quizId?: Prisma.StringFieldUpdateOperationsInput | string
+  moduleId?: Prisma.StringFieldUpdateOperationsInput | string
   score?: Prisma.FloatFieldUpdateOperationsInput | number
   isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean
   attemptedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -712,6 +837,7 @@ export type QuizAttemptUncheckedUpdateWithoutResponsesInput = {
 export type QuizAttemptCreateManyUserInput = {
   id?: string
   quizId: string
+  moduleId: string
   score: number
   isCorrect: boolean
   attemptedAt?: Date | string
@@ -727,12 +853,14 @@ export type QuizAttemptUpdateWithoutUserInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   quiz?: Prisma.QuizUpdateOneRequiredWithoutAttemptsNestedInput
+  module?: Prisma.ModuleUpdateOneRequiredWithoutQuizAttemptsNestedInput
   responses?: Prisma.QuizResponseUpdateManyWithoutAttemptNestedInput
 }
 
 export type QuizAttemptUncheckedUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quizId?: Prisma.StringFieldUpdateOperationsInput | string
+  moduleId?: Prisma.StringFieldUpdateOperationsInput | string
   score?: Prisma.FloatFieldUpdateOperationsInput | number
   isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean
   attemptedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -744,6 +872,53 @@ export type QuizAttemptUncheckedUpdateWithoutUserInput = {
 export type QuizAttemptUncheckedUpdateManyWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   quizId?: Prisma.StringFieldUpdateOperationsInput | string
+  moduleId?: Prisma.StringFieldUpdateOperationsInput | string
+  score?: Prisma.FloatFieldUpdateOperationsInput | number
+  isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  attemptedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type QuizAttemptCreateManyModuleInput = {
+  id?: string
+  userId: string
+  quizId: string
+  score: number
+  isCorrect: boolean
+  attemptedAt?: Date | string
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type QuizAttemptUpdateWithoutModuleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  score?: Prisma.FloatFieldUpdateOperationsInput | number
+  isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  attemptedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutQuizAttemptsNestedInput
+  quiz?: Prisma.QuizUpdateOneRequiredWithoutAttemptsNestedInput
+  responses?: Prisma.QuizResponseUpdateManyWithoutAttemptNestedInput
+}
+
+export type QuizAttemptUncheckedUpdateWithoutModuleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  quizId?: Prisma.StringFieldUpdateOperationsInput | string
+  score?: Prisma.FloatFieldUpdateOperationsInput | number
+  isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  attemptedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  responses?: Prisma.QuizResponseUncheckedUpdateManyWithoutAttemptNestedInput
+}
+
+export type QuizAttemptUncheckedUpdateManyWithoutModuleInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  quizId?: Prisma.StringFieldUpdateOperationsInput | string
   score?: Prisma.FloatFieldUpdateOperationsInput | number
   isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean
   attemptedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -754,6 +929,7 @@ export type QuizAttemptUncheckedUpdateManyWithoutUserInput = {
 export type QuizAttemptCreateManyQuizInput = {
   id?: string
   userId: string
+  moduleId: string
   score: number
   isCorrect: boolean
   attemptedAt?: Date | string
@@ -769,12 +945,14 @@ export type QuizAttemptUpdateWithoutQuizInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutQuizAttemptsNestedInput
+  module?: Prisma.ModuleUpdateOneRequiredWithoutQuizAttemptsNestedInput
   responses?: Prisma.QuizResponseUpdateManyWithoutAttemptNestedInput
 }
 
 export type QuizAttemptUncheckedUpdateWithoutQuizInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  moduleId?: Prisma.StringFieldUpdateOperationsInput | string
   score?: Prisma.FloatFieldUpdateOperationsInput | number
   isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean
   attemptedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -786,6 +964,7 @@ export type QuizAttemptUncheckedUpdateWithoutQuizInput = {
 export type QuizAttemptUncheckedUpdateManyWithoutQuizInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   userId?: Prisma.StringFieldUpdateOperationsInput | string
+  moduleId?: Prisma.StringFieldUpdateOperationsInput | string
   score?: Prisma.FloatFieldUpdateOperationsInput | number
   isCorrect?: Prisma.BoolFieldUpdateOperationsInput | boolean
   attemptedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -828,6 +1007,7 @@ export type QuizAttemptSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   id?: boolean
   userId?: boolean
   quizId?: boolean
+  moduleId?: boolean
   score?: boolean
   isCorrect?: boolean
   attemptedAt?: boolean
@@ -835,6 +1015,7 @@ export type QuizAttemptSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   quiz?: boolean | Prisma.QuizDefaultArgs<ExtArgs>
+  module?: boolean | Prisma.ModuleDefaultArgs<ExtArgs>
   responses?: boolean | Prisma.QuizAttempt$responsesArgs<ExtArgs>
   _count?: boolean | Prisma.QuizAttemptCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["quizAttempt"]>
@@ -843,6 +1024,7 @@ export type QuizAttemptSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   id?: boolean
   userId?: boolean
   quizId?: boolean
+  moduleId?: boolean
   score?: boolean
   isCorrect?: boolean
   attemptedAt?: boolean
@@ -850,12 +1032,14 @@ export type QuizAttemptSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   quiz?: boolean | Prisma.QuizDefaultArgs<ExtArgs>
+  module?: boolean | Prisma.ModuleDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["quizAttempt"]>
 
 export type QuizAttemptSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   userId?: boolean
   quizId?: boolean
+  moduleId?: boolean
   score?: boolean
   isCorrect?: boolean
   attemptedAt?: boolean
@@ -863,12 +1047,14 @@ export type QuizAttemptSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   quiz?: boolean | Prisma.QuizDefaultArgs<ExtArgs>
+  module?: boolean | Prisma.ModuleDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["quizAttempt"]>
 
 export type QuizAttemptSelectScalar = {
   id?: boolean
   userId?: boolean
   quizId?: boolean
+  moduleId?: boolean
   score?: boolean
   isCorrect?: boolean
   attemptedAt?: boolean
@@ -876,20 +1062,23 @@ export type QuizAttemptSelectScalar = {
   updatedAt?: boolean
 }
 
-export type QuizAttemptOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "quizId" | "score" | "isCorrect" | "attemptedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["quizAttempt"]>
+export type QuizAttemptOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "quizId" | "moduleId" | "score" | "isCorrect" | "attemptedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["quizAttempt"]>
 export type QuizAttemptInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   quiz?: boolean | Prisma.QuizDefaultArgs<ExtArgs>
+  module?: boolean | Prisma.ModuleDefaultArgs<ExtArgs>
   responses?: boolean | Prisma.QuizAttempt$responsesArgs<ExtArgs>
   _count?: boolean | Prisma.QuizAttemptCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type QuizAttemptIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   quiz?: boolean | Prisma.QuizDefaultArgs<ExtArgs>
+  module?: boolean | Prisma.ModuleDefaultArgs<ExtArgs>
 }
 export type QuizAttemptIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   quiz?: boolean | Prisma.QuizDefaultArgs<ExtArgs>
+  module?: boolean | Prisma.ModuleDefaultArgs<ExtArgs>
 }
 
 export type $QuizAttemptPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -897,12 +1086,14 @@ export type $QuizAttemptPayload<ExtArgs extends runtime.Types.Extensions.Interna
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
     quiz: Prisma.$QuizPayload<ExtArgs>
+    module: Prisma.$ModulePayload<ExtArgs>
     responses: Prisma.$QuizResponsePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     userId: string
     quizId: string
+    moduleId: string
     score: number
     isCorrect: boolean
     attemptedAt: Date
@@ -1304,6 +1495,7 @@ export interface Prisma__QuizAttemptClient<T, Null = never, ExtArgs extends runt
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   quiz<T extends Prisma.QuizDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuizDefaultArgs<ExtArgs>>): Prisma.Prisma__QuizClient<runtime.Types.Result.GetResult<Prisma.$QuizPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  module<T extends Prisma.ModuleDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ModuleDefaultArgs<ExtArgs>>): Prisma.Prisma__ModuleClient<runtime.Types.Result.GetResult<Prisma.$ModulePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   responses<T extends Prisma.QuizAttempt$responsesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.QuizAttempt$responsesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$QuizResponsePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1337,6 +1529,7 @@ export interface QuizAttemptFieldRefs {
   readonly id: Prisma.FieldRef<"QuizAttempt", 'String'>
   readonly userId: Prisma.FieldRef<"QuizAttempt", 'String'>
   readonly quizId: Prisma.FieldRef<"QuizAttempt", 'String'>
+  readonly moduleId: Prisma.FieldRef<"QuizAttempt", 'String'>
   readonly score: Prisma.FieldRef<"QuizAttempt", 'Float'>
   readonly isCorrect: Prisma.FieldRef<"QuizAttempt", 'Boolean'>
   readonly attemptedAt: Prisma.FieldRef<"QuizAttempt", 'DateTime'>
