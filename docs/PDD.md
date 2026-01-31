@@ -2,7 +2,7 @@
 ## YAKU - Water Pretreatment Educational Platform
 
 **Version:** 1.0  
-**Date:** December 2025  
+**Date:** December 2026
 **Author:** YAKU Team
 
 ---

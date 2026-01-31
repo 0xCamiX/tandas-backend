@@ -900,6 +900,6 @@ curl http://localhost:3000/api/v1/users/me/progress/COURSE_ID \
 
 ---
 
-**Last Updated:** December 2024  
+**Last Updated:** December 2026
 **API Version:** 1.0
 
