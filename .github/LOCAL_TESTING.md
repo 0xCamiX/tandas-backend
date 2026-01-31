@@ -136,7 +136,7 @@ docker system prune -a
 docker compose build --no-cache
 
 # Check image size
-docker images | grep tandas
+docker images | grep yaku
 ```
 
 Expected image size: ~200-400MB
@@ -217,7 +217,7 @@ export DOCKERHUB_USERNAME=your-username
 export IMAGE_TAG=test
 
 # Build and tag image for production testing
-docker build -t $DOCKERHUB_USERNAME/tandas-backend:$IMAGE_TAG .
+docker build -t $DOCKERHUB_USERNAME/yaku-backend:$IMAGE_TAG .
 
 # Test with production compose file
 docker compose -f docker-compose.prod.yml config

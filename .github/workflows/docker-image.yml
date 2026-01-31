@@ -32,7 +32,7 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/tandas-backend:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/yaku-backend:latest
           build-args: |
             BUN_ENV=production
           secrets: |

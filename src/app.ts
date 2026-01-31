@@ -30,12 +30,12 @@ app.use(
 	swaggerUi.serve,
 	swaggerUi.setup(swaggerSpec, {
 		customCss: ".swagger-ui .topbar { display: none }",
-		customSiteTitle: "TANDAS API Documentation",
+		customSiteTitle: "YAKU API Documentation",
 	})
 );
 
 app.get("/", (_req, res) => {
-	res.send("TANDAS API");
+	res.send("YAKU API");
 });
 
 // Health check endpoint for Docker/AWS

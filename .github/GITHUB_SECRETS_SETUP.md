@@ -100,12 +100,12 @@ MIIEpAIBAAKCAQEA...
 
 **Para PostgreSQL externo**:
 ```
-postgresql://tandas:mipassword@db.example.com:5432/tandas_prod?sslmode=require
+postgresql://yaku:mipassword@db.example.com:5432/tandas_prod?sslmode=require
 ```
 
 **Para RDS**:
 ```
-postgresql://usuario:password@mydb.xxxx.us-east-1.rds.amazonaws.com:5432/tandas?sslmode=require
+postgresql://usuario:password@mydb.xxxx.us-east-1.rds.amazonaws.com:5432/yaku?sslmode=require
 ```
 
 **IMPORTANTE**:
@@ -134,7 +134,7 @@ openssl rand -base64 32
 
 **Ejemplos**:
 - Sin dominio: `http://54.123.45.67:3000`
-- Con dominio: `https://api.tandas.com`
+- Con dominio: `https://api.yaku.com`
 
 **IMPORTANTE**: Sin barra final `/`
 
@@ -147,7 +147,7 @@ openssl rand -base64 32
 **Ejemplos**:
 - Desarrollo: `http://localhost:3001`
 - Producción sin dominio: `http://54.123.45.68`
-- Producción con dominio: `https://app.tandas.com`
+- Producción con dominio: `https://app.yaku.com`
 
 **IMPORTANTE**: Sin barra final `/`
 
@@ -236,7 +236,7 @@ Si necesitas cambiar un secret:
 Guarda esta información de forma segura (1Password, LastPass, etc):
 
 ```yaml
-# TANDAS Backend - Production Secrets
+# YAKU Backend - Production Secrets
 # Fecha: 2024-XX-XX
 
 DOCKERHUB_USERNAME: "tu-usuario"
@@ -244,7 +244,7 @@ DOCKERHUB_TOKEN: "dckr_pat_xxxxx" # Expira: nunca / 2025-XX-XX
 
 EC2_HOST: "54.xxx.xxx.xxx"
 EC2_USER: "ubuntu"
-EC2_SSH_KEY: "Archivo: ~/Downloads/tandas-key.pem"
+EC2_SSH_KEY: "Archivo: ~/Downloads/yaku-key.pem"
 
 DATABASE_URL: "postgresql://usuario@host:5432/db"
 BETTER_AUTH_SECRET: "xxxxx" # Generado: 2024-XX-XX

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Setup systemd service for TANDAS Backend
+# Setup systemd service for YAKU Backend
 # This ensures the application starts automatically on boot and restarts on failure
 
 set -e
@@ -33,9 +33,9 @@ USER_NAME=$(whoami)
 print_info "Creating systemd service file..."
 
 # Crear archivo de servicio systemd
-sudo tee /etc/systemd/system/tandas-backend.service > /dev/null << EOF
+sudo tee /etc/systemd/system/yaku-backend.service > /dev/null << EOF
 [Unit]
-Description=TANDAS Backend API Service
+Description=YAKU Backend API Service
 Requires=docker.service
 After=docker.service network-online.target
 Wants=network-online.target
@@ -85,21 +85,21 @@ print_success "Daemon reloaded"
 
 # Habilitar el servicio
 print_info "Enabling service..."
-sudo systemctl enable tandas-backend.service
+sudo systemctl enable yaku-backend.service
 print_success "Service enabled"
 
 # Iniciar el servicio
 print_info "Starting service..."
-if sudo systemctl start tandas-backend.service; then
+if sudo systemctl start yaku-backend.service; then
     print_success "Service started"
 else
-    echo "error: Service failed to start. Check logs with: sudo journalctl -u tandas-backend.service -f"
+    echo "error: Service failed to start. Check logs with: sudo journalctl -u yaku-backend.service -f"
 fi
 
 # Verificar estado
 sleep 5
 print_info "Service status:"
-sudo systemctl status tandas-backend.service --no-pager || true
+sudo systemctl status yaku-backend.service --no-pager || true
 
 echo ""
 echo "=============================="
@@ -107,11 +107,11 @@ print_success "systemd setup completed!"
 echo "=============================="
 echo ""
 echo "Useful commands:"
-echo "  sudo systemctl status tandas-backend    # Check status"
-echo "  sudo systemctl start tandas-backend     # Start service"
-echo "  sudo systemctl stop tandas-backend      # Stop service"
-echo "  sudo systemctl restart tandas-backend   # Restart service"
-echo "  sudo journalctl -u tandas-backend -f    # View logs"
+echo "  sudo systemctl status yaku-backend    # Check status"
+echo "  sudo systemctl start yaku-backend     # Start service"
+echo "  sudo systemctl stop yaku-backend      # Stop service"
+echo "  sudo systemctl restart yaku-backend   # Restart service"
+echo "  sudo journalctl -u yaku-backend -f    # View logs"
 echo ""
 echo "The service will now:"
 echo "  - Start automatically on boot"

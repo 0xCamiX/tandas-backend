@@ -5,7 +5,7 @@
 
 set -e
 
-echo "🔍 Verificación de Build - TANDAS Backend"
+echo "🔍 Verificación de Build - YAKU Backend"
 echo "=========================================="
 echo ""
 
