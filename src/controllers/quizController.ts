@@ -353,6 +353,17 @@ export class QuizController {
 				return;
 			}
 
+			if (req.body.quizId && req.body.quizId !== id) {
+				res.status(400).json({
+					success: false,
+					error: {
+						code: "INVALID_QUIZ_ID",
+						message: "El quizId del body no coincide con el parámetro",
+					},
+				});
+				return;
+			}
+
 			const attempt = await this.quizService.createQuizAttempt(userId, {
 				quizId: id,
 				responses: req.body.responses,
@@ -391,6 +402,16 @@ export class QuizController {
 						error: {
 							code: "INVALID_OPTION",
 							message: "Una o más opciones seleccionadas no son válidas",
+						},
+					});
+					return;
+				}
+				if (error.message === "INCOMPLETE_RESPONSES") {
+					res.status(400).json({
+						success: false,
+						error: {
+							code: "INCOMPLETE_RESPONSES",
+							message: "Debes responder todas las preguntas del módulo",
 						},
 					});
 					return;

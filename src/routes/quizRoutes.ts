@@ -398,7 +398,7 @@ router.put(
  * @swagger
  * /api/v1/quizzes/{id}/attempt:
  *   post:
- *     summary: Realiza un intento de quiz (requiere autenticación)
+ *     summary: Registra un intento del módulo (requiere autenticación)
  *     tags: [Quizzes]
  *     security:
  *       - bearerAuth: []
@@ -409,7 +409,7 @@ router.put(
  *         schema:
  *           type: string
  *           format: uuid
- *         description: ID del quiz
+ *         description: ID de un quiz del módulo (se usa para identificar el módulo)
  *     requestBody:
  *       required: true
  *       content:
@@ -418,7 +418,7 @@ router.put(
  *             $ref: '#/components/schemas/CreateQuizAttempt'
  *     responses:
  *       201:
- *         description: Intento de quiz realizado exitosamente
+ *         description: Intento registrado exitosamente
  *         content:
  *           application/json:
  *             schema:
@@ -433,7 +433,7 @@ router.put(
  *                   type: string
  *                   example: Intento de quiz realizado exitosamente
  *       400:
- *         description: Datos de validación inválidos o opciones inválidas
+ *         description: Datos de validación inválidos, opciones inválidas o respuestas incompletas
  *         content:
  *           application/json:
  *             schema:

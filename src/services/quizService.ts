@@ -168,40 +168,73 @@ export class QuizService {
 		userId: string,
 		data: CreateQuizAttemptDto
 	): Promise<QuizAttemptResponse> {
-		// Verificar que el quiz existe y obtener sus opciones correctas
-		const quiz = await this.quizModel.findByIdWithOptions(data.quizId);
+		const quizWithModule = await prisma.quiz.findUnique({
+			where: { id: data.quizId },
+			include: {
+				module: {
+					include: {
+						quizzes: {
+							include: {
+								options: true,
+							},
+						},
+					},
+				},
+			},
+		});
 
-		if (!quiz) {
+		if (!quizWithModule) {
 			throw new Error("QUIZ_NOT_FOUND");
 		}
 
-		// Verificar que todas las opciones seleccionadas existen y pertenecen al quiz
-		const selectedOptionIds = new Set(
-			data.responses.map((r) => r.quizOptionId)
-		);
-		const validOptionIds = new Set(quiz.options.map((o) => o.id));
+		const moduleQuizzes = quizWithModule.module.quizzes;
 
-		for (const optionId of selectedOptionIds) {
-			if (!validOptionIds.has(optionId)) {
-				throw new Error("INVALID_OPTION");
+		if (moduleQuizzes.length === 0) {
+			throw new Error("QUIZ_NOT_FOUND");
+		}
+
+		const optionLookup = new Map<
+			string,
+			{
+				quizId: string;
+				isCorrect: boolean;
+			}
+		>();
+
+		for (const moduleQuiz of moduleQuizzes) {
+			for (const option of moduleQuiz.options) {
+				optionLookup.set(option.id, {
+					quizId: moduleQuiz.id,
+					isCorrect: option.isCorrect,
+				});
 			}
 		}
 
-		// Calcular la calificación
-		const correctOptions = quiz.options.filter((o) => o.isCorrect);
-		const selectedOptions = quiz.options.filter((o) =>
-			selectedOptionIds.has(o.id)
-		);
+		const selectedByQuiz = new Map<string, boolean>();
 
-		// Verificar si todas las respuestas correctas fueron seleccionadas
-		// y ninguna incorrecta fue seleccionada
-		const allCorrectSelected = correctOptions.every((o) =>
-			selectedOptionIds.has(o.id)
-		);
-		const noIncorrectSelected = selectedOptions.every((o) => o.isCorrect);
+		for (const response of data.responses) {
+			const optionMeta = optionLookup.get(response.quizOptionId);
+			if (!optionMeta) {
+				throw new Error("INVALID_OPTION");
+			}
 
-		const isCorrect = allCorrectSelected && noIncorrectSelected;
-		const score = isCorrect ? 1.0 : 0.0;
+			if (selectedByQuiz.has(optionMeta.quizId)) {
+				throw new Error("INVALID_OPTION");
+			}
+
+			selectedByQuiz.set(optionMeta.quizId, optionMeta.isCorrect);
+		}
+
+		if (selectedByQuiz.size !== moduleQuizzes.length) {
+			throw new Error("INCOMPLETE_RESPONSES");
+		}
+
+		const correctCount = Array.from(selectedByQuiz.values()).filter(
+			(isCorrect) => isCorrect
+		).length;
+
+		const score = correctCount / moduleQuizzes.length;
+		const isCorrect = score >= 0.7;
 
 		// Crear el intento con las respuestas
 		const attempt = await prisma.quizAttempt.create({
@@ -214,6 +247,11 @@ export class QuizService {
 				quiz: {
 					connect: {
 						id: data.quizId,
+					},
+				},
+				module: {
+					connect: {
+						id: quizWithModule.moduleId,
 					},
 				},
 				score,

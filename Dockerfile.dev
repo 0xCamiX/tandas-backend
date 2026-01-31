@@ -1,0 +1,19 @@
+FROM oven/bun:latest
+
+WORKDIR /usr/src/app
+
+# Copy package files
+COPY package.json bun.lock ./
+
+# Install dependencies
+RUN bun install
+
+# Copy source code
+COPY . .
+
+# Expose port
+EXPOSE 3000
+
+# Generate Prisma Client and start dev server
+CMD ["sh", "-c", "bunx prisma generate && bun run dev"]
+

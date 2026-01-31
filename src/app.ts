@@ -13,7 +13,10 @@ app.use(express.json());
 app.use(morgan("combined"));
 app.use(
 	cors({
-		origin: [process.env.NEXT_PUBLIC_URL as string, process.env.BETTER_AUTH_URL as string],
+		origin: [
+			process.env.NEXT_PUBLIC_URL as string,
+			process.env.BETTER_AUTH_URL as string,
+		],
 		credentials: true,
 		exposedHeaders: ["set-auth-token"],
 	})

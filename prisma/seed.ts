@@ -1,12 +1,8 @@
 import "dotenv/config";
-import { PrismaClient } from "../src/generated/prisma/client";
+import { prisma } from "../src/db/prisma";
 import { disinfectionCourse } from "./seeding/courses/disinfection";
 import { safeStorageCourse } from "./seeding/courses/safeStorage";
 import type { SeedCourse, SeedModule } from "./seeding/types";
-
-const prisma = new PrismaClient({
-	accelerateUrl: process.env.DATABASE_URL as string,
-});
 
 /**
  * Limpia todos los datos relacionados con un curso existente

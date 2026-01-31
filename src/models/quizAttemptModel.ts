@@ -141,6 +141,7 @@ export class QuizAttemptModel {
 			id: attempt.id,
 			userId: attempt.userId,
 			quizId: attempt.quizId,
+			moduleId: attempt.moduleId,
 			score: attempt.score,
 			isCorrect: attempt.isCorrect,
 			attemptedAt: attempt.attemptedAt,
