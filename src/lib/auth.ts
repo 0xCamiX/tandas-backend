@@ -34,6 +34,11 @@ export const auth = betterAuth({
 			});
 		},
 	},
+	user: {
+		deleteUser: {
+			enabled: true,
+		},
+	},
 	trustedOrigins: [process.env.NEXT_PUBLIC_URL as string],
 	plugins: [bearer()],
 });
