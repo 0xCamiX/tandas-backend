@@ -240,6 +240,7 @@ export const QuizAttemptScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   quizId: 'quizId',
+  moduleId: 'moduleId',
   score: 'score',
   isCorrect: 'isCorrect',
   attemptedAt: 'attemptedAt',
