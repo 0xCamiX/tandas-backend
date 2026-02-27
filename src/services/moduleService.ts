@@ -82,6 +82,7 @@ export class ModuleService {
 			title: data.title,
 			content: data.content,
 			videoUrl: data.videoUrl,
+			authorNote: data.authorNote,
 			order: data.order ?? 0,
 			duration: data.duration ?? null,
 		});
@@ -108,6 +109,7 @@ export class ModuleService {
 			title?: string;
 			content?: string | null;
 			videoUrl?: string | null;
+			authorNote?: string | null;
 			order?: number;
 			duration?: number | null;
 			updatedAt: Date;
@@ -125,6 +127,10 @@ export class ModuleService {
 
 		if (data.videoUrl !== undefined) {
 			updateData.videoUrl = data.videoUrl || null;
+		}
+
+		if (data.authorNote !== undefined) {
+			updateData.authorNote = data.authorNote || null;
 		}
 
 		if (data.order !== undefined) {

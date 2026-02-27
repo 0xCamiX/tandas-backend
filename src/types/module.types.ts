@@ -4,6 +4,7 @@ export interface CreateModuleDto {
 	title: string;
 	content?: string;
 	videoUrl?: string;
+	authorNote?: string;
 	order?: number;
 	duration?: number;
 }
@@ -12,6 +13,7 @@ export interface UpdateModuleDto {
 	title?: string;
 	content?: string;
 	videoUrl?: string;
+	authorNote?: string;
 	order?: number;
 	duration?: number;
 }
@@ -23,6 +25,7 @@ export interface ModuleResponse {
 	title: string;
 	content: string | null;
 	videoUrl: string | null;
+	authorNote: string | null;
 	order: number;
 	duration: number | null;
 	createdAt: Date;

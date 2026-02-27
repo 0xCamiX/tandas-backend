@@ -10,8 +10,8 @@ export const disinfectionCourse: SeedCourse = {
 	status: "ACTIVO",
 	modules: [
 		{
-			title: "Hervido del agua",
-			order: 1,
+			title: "El hervido correcto",
+			order: 3,
 			duration: 40,
 			content: `En este módulo aprenderás a desinfectar el agua mediante el hervido, un método tradicional, sencillo y altamente efectivo.
 
@@ -51,6 +51,7 @@ Limitaciones:
 
 Al finalizar, podrás hervir el agua de manera segura siguiendo los pasos correctos, evitar la recontaminación durante el enfriamiento y almacenamiento, y mantener el agua segura para el consumo de tu familia.`,
 			videoUrl: "https://www.youtube.com/watch?v=kik7YAeBcsU",
+			authorNote: "Video courtesy of partner foundation.",
 			resources: [
 				{
 					type: "PDF",
@@ -148,7 +149,7 @@ Al finalizar, podrás hervir el agua de manera segura siguiendo los pasos correc
 			],
 		},
 		{
-			title: "Cloración domiciliaria",
+			title: "Cloración segura",
 			order: 2,
 			duration: 45,
 			content: `En este módulo aprenderás a desinfectar el agua usando cloro, un método ampliamente usado en todo el mundo por su eficacia y bajo costo.
@@ -189,6 +190,7 @@ Importante: Utilice solo lejía apta para desinfección de agua – por ejemplo,
 
 Al finalizar, podrás calcular y aplicar dosis sencillas de cloro para desinfectar el agua en tu hogar de manera segura, conocer las precauciones necesarias y almacenar el agua clorada correctamente.`,
 			videoUrl: "https://www.youtube.com/watch?v=ejemplo-cloracion-agua",
+			authorNote: "Video courtesy of partner foundation.",
 			resources: [
 				{
 					type: "PDF",
@@ -286,8 +288,8 @@ Al finalizar, podrás calcular y aplicar dosis sencillas de cloro para desinfect
 			],
 		},
 		{
-			title: "Desinfección solar (SODIS)",
-			order: 3,
+			title: "Método SODIS",
+			order: 1,
 			duration: 50,
 			content: `En este módulo aprenderás a desinfectar el agua usando la energía del sol mediante el método SODIS (Desinfección Solar), una técnica de bajo costo y fácil aplicación ideal para zonas de clima soleado.
 
@@ -357,6 +359,7 @@ Limitaciones:
 
 Al finalizar, podrás implementar el método SODIS correctamente en tu hogar, saber cuándo es apropiado usarlo, qué condiciones se necesitan y cómo cuidar el agua después del tratamiento.`,
 			videoUrl: "https://www.youtube.com/watch?v=ejemplo-sodis-agua",
+			authorNote: "Video courtesy of partner foundation.",
 			resources: [
 				{
 					type: "PDF",

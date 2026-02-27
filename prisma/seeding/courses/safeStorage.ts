@@ -10,7 +10,7 @@ export const safeStorageCourse: SeedCourse = {
 	status: "ACTIVO",
 	modules: [
 		{
-			title: "Riesgo de recontaminación y principios de almacenamiento seguro",
+			title: "Tipos de recipientes ideales",
 			order: 1,
 			duration: 30,
 			content: `En este módulo conocerás el concepto de recontaminación y por qué el almacenamiento seguro es una barrera clave dentro del enfoque YAKU.
@@ -47,6 +47,7 @@ Un buen almacenamiento, por sí solo, contribuye significativamente a reducir en
 
 Al finalizar el módulo podrás explicar qué es la recontaminación, por qué el almacenamiento seguro es tan importante como el tratamiento mismo, y aplicar los principios básicos para mantener el agua tratada libre de contaminación.`,
 			videoUrl: "https://www.youtube.com/watch?v=zdnwEbF2_Ts",
+			authorNote: "Video courtesy of partner foundation.",
 			resources: [
 				{
 					type: "PDF",
@@ -143,7 +144,7 @@ Al finalizar el módulo podrás explicar qué es la recontaminación, por qué e
 			],
 		},
 		{
-			title: "Elección y diseño de recipientes seguros",
+			title: "Higiene y manipulación del agua tratada",
 			order: 2,
 			duration: 35,
 			content: `En este módulo aprenderás a identificar qué características debe tener un buen recipiente para almacenar agua tratada en el hogar.
@@ -182,6 +183,7 @@ En resumen, un recipiente seguro es hermético, robusto, limpio y práctico. Por
 
 Al finalizar, serás capaz de evaluar si un recipiente es adecuado para almacenar agua tratada y proponer mejoras sencillas de diseño y señalización.`,
 			videoUrl: "https://www.youtube.com/watch?v=eXTNGW7s1xY",
+			authorNote: "Video courtesy of partner foundation.",
 			resources: [
 				{
 					type: "PDF",
@@ -280,7 +282,7 @@ Al finalizar, serás capaz de evaluar si un recipiente es adecuado para almacena
 			],
 		},
 		{
-			title: "Manejo higiénico y organización familiar/comunitaria",
+			title: "Prevención de recontaminación en el hogar",
 			order: 3,
 			duration: 40,
 			content: `En este módulo aprenderás prácticas concretas para manipular el agua tratada de forma higiénica en el punto de uso, y cómo organizar a la familia y comunidad para garantizar un almacenamiento seguro sostenido.
@@ -327,6 +329,7 @@ En síntesis, el almacenamiento seguro del agua es una tarea compartida. Se requ
 
 Al finalizar el módulo, podrás diseñar rutinas sencillas de manejo higiénico del agua tratada para tu hogar o para una comunidad, y diseñar un pequeño plan de acción para que las prácticas de almacenamiento seguro no dependan solo de una persona, sino que se mantengan en el tiempo a nivel familiar y comunitario.`,
 			videoUrl: "https://www.youtube.com/watch?v=OFkoO9Du9ms",
+			authorNote: "Video courtesy of partner foundation.",
 			resources: [
 				{
 					type: "PDF",
