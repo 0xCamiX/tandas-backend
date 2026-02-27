@@ -198,6 +198,7 @@ export class ModuleModel {
 			title: module.title,
 			content: module.content,
 			videoUrl: module.videoUrl,
+			authorNote: module.authorNote,
 			order: module.order,
 			duration: module.duration,
 			createdAt: module.createdAt,

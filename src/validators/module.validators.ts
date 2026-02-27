@@ -29,6 +29,13 @@ export const createModuleSchema = v.object({
 			v.maxLength(500, "La URL de video no puede exceder 500 caracteres")
 		)
 	),
+	authorNote: v.optional(
+		v.pipe(
+			v.string("La nota de autor debe ser un texto"),
+			v.maxLength(300, "La nota de autor no puede exceder 300 caracteres"),
+			v.trim()
+		)
+	),
 	order: v.optional(
 		v.pipe(
 			v.number("El orden debe ser un número"),
@@ -69,6 +76,13 @@ export const updateModuleSchema = v.object({
 			v.string("La URL de video debe ser un texto"),
 			v.url("La URL de video debe ser válida"),
 			v.maxLength(500, "La URL de video no puede exceder 500 caracteres")
+		)
+	),
+	authorNote: v.optional(
+		v.pipe(
+			v.string("La nota de autor debe ser un texto"),
+			v.maxLength(300, "La nota de autor no puede exceder 300 caracteres"),
+			v.trim()
 		)
 	),
 	order: v.optional(

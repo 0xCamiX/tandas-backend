@@ -161,6 +161,7 @@ export const ModuleScalarFieldEnum = {
   title: 'title',
   content: 'content',
   videoUrl: 'videoUrl',
+  authorNote: 'authorNote',
   order: 'order',
   duration: 'duration',
   createdAt: 'createdAt',

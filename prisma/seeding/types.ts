@@ -28,6 +28,7 @@ export interface SeedModule {
 	order: number;
 	content?: string;
 	videoUrl?: string;
+	authorNote?: string;
 	duration?: number;
 	resources?: SeedResource[];
 	quiz?: SeedQuiz;

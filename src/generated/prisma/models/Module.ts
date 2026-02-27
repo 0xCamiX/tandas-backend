@@ -42,6 +42,7 @@ export type ModuleMinAggregateOutputType = {
   title: string | null
   content: string | null
   videoUrl: string | null
+  authorNote: string | null
   order: number | null
   duration: number | null
   createdAt: Date | null
@@ -54,6 +55,7 @@ export type ModuleMaxAggregateOutputType = {
   title: string | null
   content: string | null
   videoUrl: string | null
+  authorNote: string | null
   order: number | null
   duration: number | null
   createdAt: Date | null
@@ -66,6 +68,7 @@ export type ModuleCountAggregateOutputType = {
   title: number
   content: number
   videoUrl: number
+  authorNote: number
   order: number
   duration: number
   createdAt: number
@@ -90,6 +93,7 @@ export type ModuleMinAggregateInputType = {
   title?: true
   content?: true
   videoUrl?: true
+  authorNote?: true
   order?: true
   duration?: true
   createdAt?: true
@@ -102,6 +106,7 @@ export type ModuleMaxAggregateInputType = {
   title?: true
   content?: true
   videoUrl?: true
+  authorNote?: true
   order?: true
   duration?: true
   createdAt?: true
@@ -114,6 +119,7 @@ export type ModuleCountAggregateInputType = {
   title?: true
   content?: true
   videoUrl?: true
+  authorNote?: true
   order?: true
   duration?: true
   createdAt?: true
@@ -213,6 +219,7 @@ export type ModuleGroupByOutputType = {
   title: string
   content: string | null
   videoUrl: string | null
+  authorNote: string | null
   order: number
   duration: number | null
   createdAt: Date
@@ -248,6 +255,7 @@ export type ModuleWhereInput = {
   title?: Prisma.StringFilter<"Module"> | string
   content?: Prisma.StringNullableFilter<"Module"> | string | null
   videoUrl?: Prisma.StringNullableFilter<"Module"> | string | null
+  authorNote?: Prisma.StringNullableFilter<"Module"> | string | null
   order?: Prisma.IntFilter<"Module"> | number
   duration?: Prisma.IntNullableFilter<"Module"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Module"> | Date | string
@@ -265,6 +273,7 @@ export type ModuleOrderByWithRelationInput = {
   title?: Prisma.SortOrder
   content?: Prisma.SortOrderInput | Prisma.SortOrder
   videoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  authorNote?: Prisma.SortOrderInput | Prisma.SortOrder
   order?: Prisma.SortOrder
   duration?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -285,6 +294,7 @@ export type ModuleWhereUniqueInput = Prisma.AtLeast<{
   title?: Prisma.StringFilter<"Module"> | string
   content?: Prisma.StringNullableFilter<"Module"> | string | null
   videoUrl?: Prisma.StringNullableFilter<"Module"> | string | null
+  authorNote?: Prisma.StringNullableFilter<"Module"> | string | null
   order?: Prisma.IntFilter<"Module"> | number
   duration?: Prisma.IntNullableFilter<"Module"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Module"> | Date | string
@@ -302,6 +312,7 @@ export type ModuleOrderByWithAggregationInput = {
   title?: Prisma.SortOrder
   content?: Prisma.SortOrderInput | Prisma.SortOrder
   videoUrl?: Prisma.SortOrderInput | Prisma.SortOrder
+  authorNote?: Prisma.SortOrderInput | Prisma.SortOrder
   order?: Prisma.SortOrder
   duration?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -322,6 +333,7 @@ export type ModuleScalarWhereWithAggregatesInput = {
   title?: Prisma.StringWithAggregatesFilter<"Module"> | string
   content?: Prisma.StringNullableWithAggregatesFilter<"Module"> | string | null
   videoUrl?: Prisma.StringNullableWithAggregatesFilter<"Module"> | string | null
+  authorNote?: Prisma.StringNullableWithAggregatesFilter<"Module"> | string | null
   order?: Prisma.IntWithAggregatesFilter<"Module"> | number
   duration?: Prisma.IntNullableWithAggregatesFilter<"Module"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Module"> | Date | string
@@ -333,6 +345,7 @@ export type ModuleCreateInput = {
   title: string
   content?: string | null
   videoUrl?: string | null
+  authorNote?: string | null
   order?: number
   duration?: number | null
   createdAt?: Date | string
@@ -350,6 +363,7 @@ export type ModuleUncheckedCreateInput = {
   title: string
   content?: string | null
   videoUrl?: string | null
+  authorNote?: string | null
   order?: number
   duration?: number | null
   createdAt?: Date | string
@@ -365,6 +379,7 @@ export type ModuleUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -382,6 +397,7 @@ export type ModuleUncheckedUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -398,6 +414,7 @@ export type ModuleCreateManyInput = {
   title: string
   content?: string | null
   videoUrl?: string | null
+  authorNote?: string | null
   order?: number
   duration?: number | null
   createdAt?: Date | string
@@ -409,6 +426,7 @@ export type ModuleUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -421,6 +439,7 @@ export type ModuleUncheckedUpdateManyInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -443,6 +462,7 @@ export type ModuleCountOrderByAggregateInput = {
   title?: Prisma.SortOrder
   content?: Prisma.SortOrder
   videoUrl?: Prisma.SortOrder
+  authorNote?: Prisma.SortOrder
   order?: Prisma.SortOrder
   duration?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -460,6 +480,7 @@ export type ModuleMaxOrderByAggregateInput = {
   title?: Prisma.SortOrder
   content?: Prisma.SortOrder
   videoUrl?: Prisma.SortOrder
+  authorNote?: Prisma.SortOrder
   order?: Prisma.SortOrder
   duration?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -472,6 +493,7 @@ export type ModuleMinOrderByAggregateInput = {
   title?: Prisma.SortOrder
   content?: Prisma.SortOrder
   videoUrl?: Prisma.SortOrder
+  authorNote?: Prisma.SortOrder
   order?: Prisma.SortOrder
   duration?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -607,6 +629,7 @@ export type ModuleCreateWithoutCourseInput = {
   title: string
   content?: string | null
   videoUrl?: string | null
+  authorNote?: string | null
   order?: number
   duration?: number | null
   createdAt?: Date | string
@@ -622,6 +645,7 @@ export type ModuleUncheckedCreateWithoutCourseInput = {
   title: string
   content?: string | null
   videoUrl?: string | null
+  authorNote?: string | null
   order?: number
   duration?: number | null
   createdAt?: Date | string
@@ -667,6 +691,7 @@ export type ModuleScalarWhereInput = {
   title?: Prisma.StringFilter<"Module"> | string
   content?: Prisma.StringNullableFilter<"Module"> | string | null
   videoUrl?: Prisma.StringNullableFilter<"Module"> | string | null
+  authorNote?: Prisma.StringNullableFilter<"Module"> | string | null
   order?: Prisma.IntFilter<"Module"> | number
   duration?: Prisma.IntNullableFilter<"Module"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Module"> | Date | string
@@ -678,6 +703,7 @@ export type ModuleCreateWithoutQuizzesInput = {
   title: string
   content?: string | null
   videoUrl?: string | null
+  authorNote?: string | null
   order?: number
   duration?: number | null
   createdAt?: Date | string
@@ -694,6 +720,7 @@ export type ModuleUncheckedCreateWithoutQuizzesInput = {
   title: string
   content?: string | null
   videoUrl?: string | null
+  authorNote?: string | null
   order?: number
   duration?: number | null
   createdAt?: Date | string
@@ -724,6 +751,7 @@ export type ModuleUpdateWithoutQuizzesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -740,6 +768,7 @@ export type ModuleUncheckedUpdateWithoutQuizzesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -754,6 +783,7 @@ export type ModuleCreateWithoutResourcesInput = {
   title: string
   content?: string | null
   videoUrl?: string | null
+  authorNote?: string | null
   order?: number
   duration?: number | null
   createdAt?: Date | string
@@ -770,6 +800,7 @@ export type ModuleUncheckedCreateWithoutResourcesInput = {
   title: string
   content?: string | null
   videoUrl?: string | null
+  authorNote?: string | null
   order?: number
   duration?: number | null
   createdAt?: Date | string
@@ -800,6 +831,7 @@ export type ModuleUpdateWithoutResourcesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -816,6 +848,7 @@ export type ModuleUncheckedUpdateWithoutResourcesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -830,6 +863,7 @@ export type ModuleCreateWithoutCompletionsInput = {
   title: string
   content?: string | null
   videoUrl?: string | null
+  authorNote?: string | null
   order?: number
   duration?: number | null
   createdAt?: Date | string
@@ -846,6 +880,7 @@ export type ModuleUncheckedCreateWithoutCompletionsInput = {
   title: string
   content?: string | null
   videoUrl?: string | null
+  authorNote?: string | null
   order?: number
   duration?: number | null
   createdAt?: Date | string
@@ -876,6 +911,7 @@ export type ModuleUpdateWithoutCompletionsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -892,6 +928,7 @@ export type ModuleUncheckedUpdateWithoutCompletionsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -906,6 +943,7 @@ export type ModuleCreateWithoutQuizAttemptsInput = {
   title: string
   content?: string | null
   videoUrl?: string | null
+  authorNote?: string | null
   order?: number
   duration?: number | null
   createdAt?: Date | string
@@ -922,6 +960,7 @@ export type ModuleUncheckedCreateWithoutQuizAttemptsInput = {
   title: string
   content?: string | null
   videoUrl?: string | null
+  authorNote?: string | null
   order?: number
   duration?: number | null
   createdAt?: Date | string
@@ -952,6 +991,7 @@ export type ModuleUpdateWithoutQuizAttemptsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -968,6 +1008,7 @@ export type ModuleUncheckedUpdateWithoutQuizAttemptsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -982,6 +1023,7 @@ export type ModuleCreateManyCourseInput = {
   title: string
   content?: string | null
   videoUrl?: string | null
+  authorNote?: string | null
   order?: number
   duration?: number | null
   createdAt?: Date | string
@@ -993,6 +1035,7 @@ export type ModuleUpdateWithoutCourseInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1008,6 +1051,7 @@ export type ModuleUncheckedUpdateWithoutCourseInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1023,6 +1067,7 @@ export type ModuleUncheckedUpdateManyWithoutCourseInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   content?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   videoUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  authorNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   order?: Prisma.IntFieldUpdateOperationsInput | number
   duration?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1093,6 +1138,7 @@ export type ModuleSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   title?: boolean
   content?: boolean
   videoUrl?: boolean
+  authorNote?: boolean
   order?: boolean
   duration?: boolean
   createdAt?: boolean
@@ -1111,6 +1157,7 @@ export type ModuleSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   title?: boolean
   content?: boolean
   videoUrl?: boolean
+  authorNote?: boolean
   order?: boolean
   duration?: boolean
   createdAt?: boolean
@@ -1124,6 +1171,7 @@ export type ModuleSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   title?: boolean
   content?: boolean
   videoUrl?: boolean
+  authorNote?: boolean
   order?: boolean
   duration?: boolean
   createdAt?: boolean
@@ -1137,13 +1185,14 @@ export type ModuleSelectScalar = {
   title?: boolean
   content?: boolean
   videoUrl?: boolean
+  authorNote?: boolean
   order?: boolean
   duration?: boolean
   createdAt?: boolean
   updatedAt?: boolean
 }
 
-export type ModuleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "courseId" | "title" | "content" | "videoUrl" | "order" | "duration" | "createdAt" | "updatedAt", ExtArgs["result"]["module"]>
+export type ModuleOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "courseId" | "title" | "content" | "videoUrl" | "authorNote" | "order" | "duration" | "createdAt" | "updatedAt", ExtArgs["result"]["module"]>
 export type ModuleInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   course?: boolean | Prisma.CourseDefaultArgs<ExtArgs>
   quizzes?: boolean | Prisma.Module$quizzesArgs<ExtArgs>
@@ -1174,6 +1223,7 @@ export type $ModulePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     title: string
     content: string | null
     videoUrl: string | null
+    authorNote: string | null
     order: number
     duration: number | null
     createdAt: Date
@@ -1611,6 +1661,7 @@ export interface ModuleFieldRefs {
   readonly title: Prisma.FieldRef<"Module", 'String'>
   readonly content: Prisma.FieldRef<"Module", 'String'>
   readonly videoUrl: Prisma.FieldRef<"Module", 'String'>
+  readonly authorNote: Prisma.FieldRef<"Module", 'String'>
   readonly order: Prisma.FieldRef<"Module", 'Int'>
   readonly duration: Prisma.FieldRef<"Module", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Module", 'DateTime'>

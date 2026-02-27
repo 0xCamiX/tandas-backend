@@ -1,7 +1,10 @@
 import "dotenv/config";
 import { prisma } from "../src/db/prisma";
 import { disinfectionCourse } from "./seeding/courses/disinfection";
+import { filtrationCourse } from "./seeding/courses/filtration";
+import { introSafeWaterCourse } from "./seeding/courses/introSafeWater";
 import { safeStorageCourse } from "./seeding/courses/safeStorage";
+import { sedimentationCourse } from "./seeding/courses/sedimentation";
 import type { SeedCourse, SeedModule } from "./seeding/types";
 
 /**
@@ -87,6 +90,7 @@ async function seedModule(courseId: string, moduleSeed: SeedModule) {
 			title: moduleSeed.title,
 			content: moduleSeed.content,
 			videoUrl: moduleSeed.videoUrl,
+			authorNote: moduleSeed.authorNote,
 			order: moduleSeed.order,
 			duration: moduleSeed.duration ?? 0,
 		},
@@ -213,7 +217,13 @@ async function seedCourse(courseSeed: SeedCourse) {
 async function main() {
 	console.info("Starting database seed...");
 
-	const courseSeedData = [disinfectionCourse, safeStorageCourse];
+	const courseSeedData = [
+		introSafeWaterCourse,
+		sedimentationCourse,
+		filtrationCourse,
+		disinfectionCourse,
+		safeStorageCourse,
+	];
 
 	for (const course of courseSeedData) {
 		try {
