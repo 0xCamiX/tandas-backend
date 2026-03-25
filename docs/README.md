@@ -74,7 +74,8 @@ docs/
 ├── README.md           # This file - documentation index
 ├── API.md              # API reference (implementation-focused)
 ├── SDD.md              # Technical architecture (developer-focused)
-└── PDD.md              # Product specifications (business-focused)
+├── PDD.md              # Product specifications (business-focused)
+└── EC2_SETUP.md        # EC2 provisioning and deployment guide (DevOps)
 ```
 
 ### Audience
@@ -89,8 +90,10 @@ docs/
 
 ### Deployment & Operations
 
-See `/.github/` for deployment and operational documentation:
-- **DEPLOYMENT.md**: Complete EC2 deployment guide
+- **[EC2_SETUP.md](EC2_SETUP.md)**: Complete EC2 provisioning and configuration guide (Amazon Linux 2023, ARM64, Docker, systemd, Watchtower)
+
+See `/.github/` for CI/CD documentation:
+- **DEPLOYMENT.md**: GitHub Actions deployment reference
 - **GITHUB_SECRETS_SETUP.md**: GitHub Actions configuration
 - **LOCAL_TESTING.md**: Testing and verification procedures
 - **AMAZON_LINUX_NOTES.md**: Platform-specific notes
@@ -157,7 +160,8 @@ Documentation should be updated when:
 - Integrate with the API? → [API.md](API.md)
 - Understand the codebase? → [SDD.md](SDD.md)
 - Learn about features? → [PDD.md](PDD.md)
-- Deploy to production? → `/.github/DEPLOYMENT.md`
+- Provision and configure EC2? → [EC2_SETUP.md](EC2_SETUP.md)
+- Deploy to production (CI/CD)? → `/.github/DEPLOYMENT.md`
 - Test locally? → `/.github/LOCAL_TESTING.md`
 - Setup GitHub? → `/.github/GITHUB_SECRETS_SETUP.md`
 

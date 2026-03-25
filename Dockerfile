@@ -24,6 +24,8 @@ FROM base AS release
 COPY --from=install /temp/prod/node_modules node_modules
 COPY --from=prerelease /usr/src/app/dist ./dist
 COPY --from=prerelease /usr/src/app/src/config ./src/config
+COPY --from=prerelease /usr/src/app/src/generated ./src/generated
+COPY --from=prerelease /usr/src/app/prisma ./prisma
 COPY --from=prerelease /usr/src/app/package.json .
 
 ENV NODE_ENV=production

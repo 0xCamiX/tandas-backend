@@ -101,14 +101,14 @@ enum CourseLevel {
 }
 
 model Module {
-  id       String  @id @default(uuid())
-  courseId String
-  title    String
-  content  String?
-  videoUrl String?
+  id         String  @id @default(uuid())
+  courseId   String
+  title      String
+  content    String?
+  videoUrl   String?
   authorNote String?
-  order    Int     @default(0)
-  duration Int?    @default(0)
+  order      Int     @default(0)
+  duration   Int?    @default(0)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
